@@ -1,1 +1,1 @@
-# 前端 html、css、js、dom、bom 基础
+# Learning HTML、CSS、JS(Basic, DOM, BOM)
