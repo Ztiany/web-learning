@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+
+    <!-- CSS 代码 -->
+    <style>
+        html {
+            height: 100%;
+        }
+
+        /* reset */
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            /* flex 布局改变了默认的流式布局。flex 不区分元素是否是块级元素还是行内元素。 默认情况， flex 布局总是按照主轴方向，（默认为从左到右）安排各个元素。
+            当且仅当一行排不下的时候，才会另起一行。*/
+            display: flex;
+
+            /* 当 body 的内容高度小于当前可视区大小时，body 的高度设为等于当前可视区大小，而当内容高度大于当前可视区大小时，body 高度将等于实际内容高度。
+            具体参考：https://www.freecodecamp.org/news/html-page-width-height/ */
+            min-height: 100%;
+        }
+
+        #main {
+            /* 元素的 order 属性告诉 flex 布局按照元素的 order 属性指定的值，从小到大的顺序从左到右安排元素。默认情况下，元素 sidebar 的 order 值都是为 0。
+            因此，当我们把 main 元素的 order 设为 1 的时候，sidebar 的默 认 order 值是 0， 所以 main 就被安排在 sidebar 的右侧了。当元素的 order 值
+            相同的时候，flex 布局按照元素的书写顺序沿主轴方向排列元素。*/
+            order: 1;
+
+            padding: 0 30px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        section {
+            /* 与 flex-shrink 属性相反，flex-grow 属性定义当主轴有多余空间时，空间如何分配，默认值为 0，表示不分配多余空间。这里我们将 section 的 flex-grow
+            设为 1，由于 footer 的 flex-grow 仍然是 0，所以多余空间将被 section 完全占去，这样 footer 就会落到可视区底部了。*/
+            flex-grow: 1;
+
+            padding-bottom: 40px;
+        }
+
+        article {
+            padding-bottom: 30px;
+            border-bottom: solid 1px #ccc;
+            position: relative;
+        }
+
+        article a {
+            color: #333;
+        }
+
+        .pub-time {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: normal;
+        }
+
+        section p {
+            line-height: 180%;
+        }
+
+        footer {
+            text-align: center;
+            line-height: 60px;
+            border-top: solid 1px #ccc;
+        }
+
+        #sidebar {
+            /* flex 布局在沿主轴方向排列元素的时候，如果空间不足（把浏览器空间调小），默认会收缩元素空间，导致看上去 width 属性没有效果。
+            要取消收缩空间的效果，我们可以将 sidebar 的 flex-shrink 属性设置为 0，flex-shrink 属性为零是指定元素在主轴方向上不收缩。*/
+            flex-shrink: 0;
+            width: 230px;
+            background-color: #222;
+            color: #999;
+        }
+
+        #sidebar a {
+            color: #999;
+        }
+
+        #profile {
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        #profile h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
+
+        #avatar img {
+            width: 150px;
+        }
+
+        #navigator {
+            padding-left: 40px;
+            line-height: 30px;
+        }
+
+    </style>
+
+    <!-- 脚本 -->
+    <script type="text/javascript">
+        const pubTimeEls = document.querySelectorAll('.pub-time em');
+        pubTimeEls.forEach((el) => {
+            const date = new Date(el.innerHTML);
+            el.innerHTML = `${date.getMonth() + 1}月${date.getDate()}日, ${date.getFullYear()}`;
+        });
+
+        let title = document.title;
+        window.addEventListener('blur', () => {
+            document.title = '记得回来看我啊~';
+        });
+        window.addEventListener('focus', () => {
+            document.title = title;
+        });
+        window.addEventListener("load", () => {
+            console.log("加载完毕！")
+        });
+    </script>
+
+</head>
+
+
+<body>
+
+<!--
+页面布局：总-分结构：
+
+    - main
+    - sidebar
+-->
+
+<!--主内容区-->
+<div id="main">
+    <!--文章-->
+    <section>
+        <article>
+            <h2><a href="articles/01.html">我的第一篇文章</a></h2>
+            <p>
+                正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要
+            </p>
+            <div class="pub-time">发布时间：<em>2018-12-08</em></div>
+            <div class="read-more"><a href="articles/01.html">阅读全文</a></div>
+        </article>
+        <article>
+            <h2><a href="articles/01.html">我的第二篇文章</a></h2>
+            <p>
+                正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要
+            </p>
+            <div class="pub-time">发布时间：<em>2018-12-08</em></div>
+            <div class="read-more"><a href="articles/01.html">阅读全文</a></div>
+        </article>
+        <article>
+            <h2><a href="articles/01.html">我的第三篇文章</a></h2>
+            <p>
+                正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要正文摘要
+            </p>
+            <div class="pub-time">发布时间：<em>2018-12-08</em></div>
+            <div class="read-more"><a href="articles/01.html">阅读全文</a></div>
+        </article>
+    </section>
+
+    <!--页脚-->
+    <footer>
+        &copy;2018 - 我的博客 - 君喻学堂
+    </footer>
+</div>
+
+<!--侧边栏-->
+<div id="sidebar">
+    <div id="profile">
+        <!-- 当一个非块级元素和其他块级元素并列时，我们通常给这个非块级元素外层套一个块级元素。 -->
+        <div id="avatar">
+            <a href="#"><img src="static/image/avatar.png" alt="Avatar"></a>
+        </div>
+        <h1>我的博客</h1>
+    </div>
+    <div id="navigator">
+        <div><a href="#">首页</a></div>
+        <div><a href="#">友链</a></div>
+    </div>
+</div>
+
+</body>
+
+</html>

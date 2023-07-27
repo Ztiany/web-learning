@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo: Data Transfer</title>
+
+    <style>
+        ul {
+            width: 120px;
+            height: 200px;
+            border: 1px solid cadetblue;
+            margin: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.addEventListener("load", () => {
+            const oList = document.getElementById("list");
+            const items = document.getElementsByTagName("li");
+            const oBox = document.getElementById("box");
+
+            for (let i = 0; i < items.length; i++) {
+                items[i].ondragstart = function (e) {
+                    console.log(e.target.id)
+                    e.dataTransfer.setData("text/plain", e.target.id);
+                }
+            }
+
+            oBox.ondragover = function (e) {
+                //调用 event.preventDefault() 方法来屏蔽元素的默认行为。如果没有屏蔽掉，则 drop 事件不会被触发。
+                e.preventDefault();
+            };
+
+            oBox.ondrop = function (e) {
+                e.preventDefault();
+                const data = e.dataTransfer.getData("text/plain")
+                console.log(data)
+                const item = document.getElementById(data);
+                oList.removeChild(item)
+                oBox.appendChild(item)
+            };
+
+        });
+    </script>
+
+</head>
+
+
+<body>
+
+<ul id="list">
+    <li id="list1" draggable="true">list1</li>
+    <li id="list2" draggable="true">list2</li>
+    <li id="list3" draggable="true">list3</li>
+    <li id="list4" draggable="true">list4</li>
+    <li id="list5" draggable="true">list5</li>
+    <li id="list6" draggable="true">list6</li>
+    <li id="list7" draggable="true">list7</li>
+    <li id="list8" draggable="true">list8</li>
+    <li id="list9" draggable="true">list9</li>
+</ul>
+
+<ul id="box">
+
+</ul>
+
+</body>
+
+</html>
