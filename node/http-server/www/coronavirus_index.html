@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coronavirus Data</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body>
+
+<!-- Handlebar 模板引擎 -->
+<ul>
+    {{#each data ~}}
+    <li><a href="./{{this}}">{{this}}</a></li>
+    {{~/each}}
+</ul>
+
+</body>
+</html>

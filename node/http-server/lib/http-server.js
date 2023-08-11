@@ -8,14 +8,17 @@ module.exports = class {
 
         this.server = http.createServer(async (req, res) => {
             await interceptor.run({req: req, res: res})
+            console.log(`http-server final body = ${res.body}`)
             if (!res.writableFinished) {
                 let body = res.body || '200 OK';
                 if (body.pipe) {
+                    console.log(`http-server end for ${req.url}`)
                     body.pipe(res);
                 } else {
                     if (typeof body !== 'string' && res.getHeader('Content-Type') === 'application/json') {
                         body = JSON.stringify(body);
                     }
+                    console.log(`http-server end for ${req.url}`)
                     res.end(body);
                 }
             }
@@ -28,11 +31,18 @@ module.exports = class {
         this.interceptor = interceptor;
     }
 
-    listen(opts, cb = () => {
-    }) {
+    listen(
+        opts,
+        usage = '',
+        cb = () => {
+        }
+    ) {
         if (typeof opts === 'number') opts = {port: opts};
         opts.host = opts.host || '0.0.0.0';
         console.log(`Starting up http-server on http://${opts.host}:${opts.port}`);
+        if (usage) {
+            console.log(usage)
+        }
         this.server.listen(opts, () => cb(this.server));
     }
 

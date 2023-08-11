@@ -1,7 +1,6 @@
 // noinspection DuplicatedCode
 
 const HttpServer = require('./lib/http-server');
-const Router = require('./lib/router');
 
 const app = new HttpServer();
 
