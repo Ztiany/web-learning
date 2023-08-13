@@ -79,14 +79,14 @@ app.use(router.post('/todo/add', async (ctx, next) => {
 }));
 
 app.use(router.post('/todo/login', async (ctx, next) => {
-    const {database, params, res} = ctx;
+    const {database, httpParams, res} = ctx;
     res.setHeader('Content-Type', 'application/json');
     const {login} = require('./lib/model-user');
-    const result = await login(database, ctx, params);
+    const result = await login(database, ctx, httpParams);
 
     res.statusCode = 302;
     if (!result) { // 登录失败，跳转到 login 继续登录
-        res.setHeader('Location', '/www/todo-login.html');
+        res.setHeader('Location', '/todo-login.html');
     } else {
         res.setHeader('Location', '/'); // 成功，跳转到 index
     }

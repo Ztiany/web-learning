@@ -8,17 +8,16 @@ module.exports = class {
 
         this.server = http.createServer(async (req, res) => {
             await interceptor.run({req: req, res: res})
-            console.log(`http-server final body = ${res.body}`)
             if (!res.writableFinished) {
                 let body = res.body || '200 OK';
                 if (body.pipe) {
-                    console.log(`http-server end for ${req.url}`)
+                    console.log(`http-server end for ${req.url}， final body is pipe.`)
                     body.pipe(res);
                 } else {
                     if (typeof body !== 'string' && res.getHeader('Content-Type') === 'application/json') {
                         body = JSON.stringify(body);
                     }
-                    console.log(`http-server end for ${req.url}`)
+                    console.log(`http-server end for ${req.url}, final body is ${body}`)
                     res.end(body);
                 }
             }

@@ -22,7 +22,7 @@ async function addTask(database, {text, state}) {
     }
 }
 
-async function addUserTask(database, {text, state}, userInfo) {
+async function addUserTask(database, userInfo, {text, state}) {
     try {
         const data = await database.run(
             'INSERT INTO todo_user(text,state,userId) VALUES (?, ?,?)',

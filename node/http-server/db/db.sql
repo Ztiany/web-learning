@@ -37,5 +37,3 @@ CREATE TABLE [session]
     [created] INTEGER,
     [expires] INTEGER
 );
-
-.tables

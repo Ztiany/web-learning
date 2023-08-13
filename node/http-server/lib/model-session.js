@@ -9,14 +9,18 @@ const sessionKey = 'interceptor_js';
  * @returns {Promise<any|null>}
  */
 async function getSession(database, ctx, name) {
+    console.log(`getSession is called, name: ${name}`)
     const key = ctx.cookies[sessionKey];
     if (key) {
+        console.log(`getSession: key: ${key}`)
         const now = Date.now();
         const session = await database.get(
             'SELECT * FROM session WHERE key = ? and name = ? and expires > ?', key, name, now
         );
         if (session) {
-            return JSON.parse(session.value);
+            const value = session.value;
+            console.log(`getSession: session: ${value}`)
+            return JSON.parse(value);
         }
     }
     return null;

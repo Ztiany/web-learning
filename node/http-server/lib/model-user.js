@@ -3,9 +3,14 @@ const {setSession} = require("./model-session");
 
 const sessionName = 'userInfo';
 
+/**
+ * 默认用户：Alien/123456
+ */
 async function login(database, ctx, {name, password}) {
+    console.log(`login is called, name: ${name}, password: ${password}`)
     const userInfo = await database.get('SELECT * FROM user WHERE name = ?', name);
     if (!userInfo) {
+        console.log(`user ${name} not found.`);
         return null;
     }
 
@@ -16,7 +21,10 @@ async function login(database, ctx, {name, password}) {
         .digest()
         .toString('hex');
 
+    console.log(`user ${name} password: ${userInfo.password}, hash: ${hash}`)
+
     if (hash === userInfo.password) {
+        console.log(`user ${name} login success.`)
         const data = {id: userInfo.id, name: userInfo.name};
         await setSession(database, ctx, sessionName, data)
         return data;
