@@ -1,6 +1,5 @@
 const Server = require('./lib/http-server-cluster');
 const Router = require('./lib/router');
-const cluster = require('cluster');
 
 const app = new Server({instances: 2, mode: 'development'});
 const router = new Router();
@@ -32,7 +31,7 @@ app.use(async (ctx, next) => {
 
 app.use(router.all('.*', async ({req, res}, next) => {
     res.setHeader('Content-Type', 'text/html');
-    res.body = '<h1>Hello world</h1>';
+    res.body = '<h1>Hello world 123</h1>';
     await next();
 }));
 
