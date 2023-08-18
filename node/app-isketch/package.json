@@ -1,0 +1,28 @@
+{
+  "name": "app-isketch",
+  "version": "1.0.0",
+  "description": "A SVG doodle for sketching",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1 -p9090",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./**/*.js",
+    "lint:fix": "eslint ./**/*.js --fix",
+    "lint:init": "eslint --init",
+    "compile": "babel src -d lib"
+  },
+  "keywords": [],
+  "author": "Ztiany",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
+    "esbuild": "^0.19.2",
+    "eslint": "^8.47.0",
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "core-js": "^3.32.0"
+  }
+}

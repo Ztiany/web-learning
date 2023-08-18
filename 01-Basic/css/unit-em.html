@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unit-EM</title>
+    <style>
+        #demo1 {
+            margin-top: 20px;
+        }
+
+        /*
+        在 CSS 中，em 是相对于“当前元素”的字体大小而言的。其中，1em 等于“当前元素”字体大小。这里的字体大小指的是以 px 为单位的 font-size 值。
+        例如，当前元素的 font-size 值为 10px，则 1em 等于 10px；当前元素的 font-size 值为 20px，则 1em 等于 20px，以此类推。
+
+        如果当前元素的 font-size 没有定义，则当前元素会继承父元素的 font-size。如果当前元素的所有祖先元素都没有定义 font-size，则当前元素会
+        继承浏览器默认的 font-size。其中，所有浏览器默认的 font-size 值都是 16px。
+        */
+        #demo1 p {
+            font-size: 14px;
+            text-indent: 2em;
+            width: 360px;
+        }
+    </style>
+</head>
+
+
+<body>
+<h2>首行缩进使用 text-indent</h2>
+<div id="demo1">
+    <h3>爱莲说</h3>
+    <p>水陆草木之花，可爱者甚蕃。晋陶渊明独爱菊。自李唐来，世人甚爱牡丹。予独爱莲之出
+        淤泥而不染，濯清涟而不妖，中通外直，不蔓不枝，香远益清，亭亭净植，可远观而不可亵玩焉。</p>
+    <p>予谓菊，花之隐逸者也；牡丹，花之富贵者也；莲，花之君子者也。噫！菊之爱，陶后
+        鲜有闻；莲之爱，同予者何人？牡丹之爱，宜乎众矣。</p>
+</div>
+</body>
+
+</html>
+

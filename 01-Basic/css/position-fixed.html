@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Position-Fixed</title>
+    <style>
+        #box1 {
+            width: 160px;
+            border: 1px solid red;
+            height: 1800px;
+            line-height: 1800px;
+            text-align: center;
+        }
+
+        #box2 {
+            width: 160px;
+            height: 160px;
+            text-align: center;
+            line-height: 160px;
+            border: 1px solid blue;
+            /* 指定为固定定位：固定定位最常用于实现返回顶部功能，这个效果非常经典。*/
+            position: fixed;
+            /* 指定位置：默认情况下，固定定位元素的位置是相对浏览器而言。*/
+            top: 180px;
+            right: 20px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div id="box1">文档流</div>
+<div id="box2">固定定位</div>
+
+</body>
+</html>

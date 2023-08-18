@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Position-Absolute</title>
+    <style>
+        #box1 {
+            width: 160px;
+            border: 1px solid red;
+            height: 1800px;
+            line-height: 1800px;
+            text-align: center;
+        }
+
+
+        #box2 {
+            width: 160px;
+            height: 160px;
+            text-align: center;
+            line-height: 160px;
+            border: 1px solid blue;
+            /* 在 CSS 中，我们可以使用 position:absolute; 来实现绝对定位。绝对定位在几种定位方式中使用最为广泛，因为它能够很精确地把元素定位到任意你想要的位置。
+            一个元素变成了绝对定位元素，这个元素就完全脱离文档流了，绝对定位元素的前面或者后面的元素会认为这个元素并不存在，即这个元素浮于其他元素上面，它是独立出来的。*/
+            position: absolute;
+            /* 指定位置：默认情况下，固定定位和绝对定位的位置是相对于浏览器而言，而相对定位的位置是相对原始位置而言。*/
+            top: 180px;
+            right: 20px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div id="box1">文档流</div>
+<div id="box2">绝对定位</div>
+
+</body>
+</html>

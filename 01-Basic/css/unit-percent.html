@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unit-Percent</title>
+    <style>
+        /*
+        在 CSS 中，支持百分比作为单位的属性很多，大致可以分为三大类。
+            （1）width、height、font-size 的百分比是相对于父元素“相同属性”的值来计算的。
+            （2）line-height 的百分比是相对于父元素的 font-size 值来计算的。
+            （3）vertical-align 的百分比是相对当前元素的 line-height 值来计算的。
+        */
+        #father {
+            width: 200px;
+            height: 200px;
+            border: 1px solid blue;
+            font-size: 30px;
+        }
+
+        #son {
+            width: 50%;
+            height: 50%;
+            border: 1px solid red;
+            font-size: 50%;
+            line-height: 100%;
+        }
+    </style>
+</head>
+
+
+<body>
+
+</body>
+
+<div id="father">
+    我是一个 DIV
+    <div id="son">
+        我是一个 DIV
+    </div>
+</div>
+
+</html>
+

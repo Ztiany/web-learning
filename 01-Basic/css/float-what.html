@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Float-What</title>
+    <style>
+        #father {
+            margin: 10px;
+            width: 300px;
+            background: #0C6A9D;
+            border: 1px solid silver;
+        }
+
+        #father div {
+            padding: 10px;
+            margin: 15px;
+        }
+
+        #son1 {
+            background-color: hotpink;
+            float: left;
+        }
+
+        #son2 {
+            background-color: darkblue;
+            float: left;
+        }
+
+        /*
+        一般都是在浮动元素后面再增加一个空元素，然后为这个空元素定义 clear:both; 来清除浮动。
+         */
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+
+<body>
+<div id="father">
+    <div id="son1"></div>
+    <div id="son2"></div>
+    <div class="clear"></div>
+</div>
+
+</body>
+</html>
