@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>布局：水平居中</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .demo {
+            margin-top: 30px;
+            width: 600px;
+            background-color: wheat;
+            color: #0C6A9D;
+        }
+
+        #demo-1-outbox {
+            border: 1px dashed gray;
+            width: 80%;
+            text-align: center;
+            height: 400px;
+        }
+
+        #demo-2-outbox {
+            border: 1px dashed red;
+            margin: 0 auto;
+            width: 80%;
+            text-align: center;
+            height: 400px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="demo" id="header">
+    <h1>水平居中</h1>
+</div>
+
+<div class="demo" id="demo-1">
+    <h2>text align: center</h2>
+    <blockquote>
+        text-align 对文字、inline 元素（行内元素）以及 inline-block 元素（行内块元素）起作用，但对块元素不起作用。注意，img 元素属于
+        inline-block 元素。
+    </blockquote>
+    <div id="demo-1-outbox">
+        <img src="../resource/img/girl01.png">
+    </div>
+</div>
+
+<div class="demo" id="demo-2">
+    <h2>margin:0 auto</h2>
+    <blockquote>
+        text-align 对文字、inline 元素（行内元素）以及 inline-block 元素（行内块元素）起作用，但对块元素不起作用。注意，img 元素属于
+        inline-block 元素。
+    </blockquote>
+    <div id="demo-2-outbox">
+        <div id="demo-2-inbox">
+            <img src="../resource/img/girl01.png">
+        </div>
+    </div>
+</div>
+<div class="demo" id="demo-3">
+    <h2>说明</h2>
+    <div>
+        <p>
+            在页面水平居中实现中，“text-align:center；”与 “margin:0 auto；”是最常见的两种水平居中方式。不过这两者也有着本质的区别。
+        </p>
+        <ul>
+            <li>（1）“text-align:center；”实现的是文字、inline 元素以及 inline-block 元素的水平居中。</li>
+            <li>（2）“margin:0 auto；”实现的是块元素的水平居中。</li>
+            <li>（3）“text-align:center；”在父元素中定义，“margin:0 auto；”在当前元素中定义。</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

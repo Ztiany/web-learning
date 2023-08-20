@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 规范</title>
+    <link rel="stylesheet" href="../resource/css/reset.css">
+</head>
+
+
+<body>
+
+<h2>CSS 文件命名：</h2>
+<ol>
+    <li>reset.css：重置样式，重置元素的默认样式</li>
+    <li>global.css：全局样式，全站公用，定义页面的基础央视</li>
+    <li>themes.css：主题样式，用于实现换肤功能</li>
+    <li>module.css：模块样式，用于模块的样式</li>
+    <li>master.css：母版样式，用于母版页面</li>
+    <li>columns.css：专栏样式</li>
+    <li>forms.css：表单样式</li>
+    <li>mend.css：补丁样式，用于维护、修改样式</li>
+    <li>print.css：打印样式</li>
+</ol>
+
+<h2>为什么要用 CSS reset</h2>
+<p>
+    现在浏览器有很多，主流的有 Chrome、Firefox、IE、Safari、Opera 等。不同的浏览器，默认样式也是不同的。
+    举个例子，ul 元素有缩进样式。在 Firefox 浏览器中，ul 元素的缩进是通过 padding 实现的；而在 IE 浏览器中，ul 元素的缩进是通过
+    margin 来实现的。
+    再比如 button 元素，在 IE、chrome、Firefox 等浏览器中的默认样式也是不同的。
+
+    推荐 CSS 专家 Eric Meyer 的重置样式表，这是国内外流行的重置样式表。
+    具体可参考：<a href="http://meyerweb.com/eric/tools/css/reset/">CSS Tools: Reset CSS</a>。
+</p>
+
+</body>
+</html>

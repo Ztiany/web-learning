@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>负 Margin 技术</title>
+    <style>
+
+        .demo {
+            margin-top: 30px;
+        }
+
+        /*
+        ============================== Demo 1 ==============================
+        */
+        #demo1-content, #demo1-sidebar {
+            float: left;
+            color: white;
+        }
+
+        #demo1-content {
+            width: 100%;
+            margin-right: -200px;
+            background-color: red;
+        }
+
+        #demo1-sidebar {
+            width: 200px;
+            background-color: purple;
+        }
+
+        #demo1-content p {
+            /* 防止浏览器可视区域宽度不足时发生文本重叠 */
+        }
+
+        /*
+        ============================== Demo 2 ==============================
+        */
+        #demo2-father {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 1px dashed gray;
+        }
+
+        #demo2-son {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -30px;
+            margin-left: -50px;
+            width: 100px;
+            height: 60px;
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="demo" id="header">
+    <h2>负 Margin 技术简介</h2>
+    <ul>
+        <li>（1）当元素的 margin-to p或者 margin-left 为负数时，“当前元素”会被拉向指定方向。</li>
+        <li>（2）当元素的 margin-bottom 或者 margin-right 为负数时，“后续元素”会被拉向指定方向。</li>
+        <li>（3）负 margin 对浮动元素的影响，跟负 margin
+            对普通文档流元素的影响其实是差不多的。唯一不太一样的是，浮动元素可以向左也可以向右。因此对于浮动元素，我们只需要比普通文档流元素多关注一点，那就是浮动元素的“流动的方向”。
+        </li>
+    </ul>
+</div>
+
+<div class="demo" id="demo1">
+    <h2>应用：自适应两列布局</h2>
+    <blockquote>
+        自适应两列布局自适应两列布局，指的是在左右两列中，其中有一列的宽度为自适应，另外一列宽度是固定的。如果使用
+        float，一般只能实现固定的左右两列布局，并不能实现其中一列为自适应的布局。
+    </blockquote>
+    <div id="demo1-content">
+        <p>
+            这是主体部分，子适应宽度。
+        </p>
+    </div>
+    <div id="demo1-sidebar">
+        <p>
+            这是侧栏部分，固定宽度
+        </p>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div class="demo" id="demo2">
+    <h2>应用：元素垂直居中</h2>
+    <div id="demo2-father">
+        <div id="demo2-son"></div>
+    </div>
+</div>
+
+</body>
+</html>

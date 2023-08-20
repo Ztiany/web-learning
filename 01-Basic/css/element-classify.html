@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>element-classify</title>
+    <style>
+        .demo {
+            margin-top: 40px;
+            width: 400px;
+        }
+
+        img {
+            width: 400px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="header" class="demo">
+    <h1>元素类型</h1>
+</div>
+
+<div id="demo-1" class="demo">
+    <h2>块元素</h2>
+    <img src="../resource/img/block-element.jfif">
+    <blockquote>
+        <ol>
+            <li>独占一行，排斥其他元素跟其位于同一行，包括块元素和行内元素。</li>
+            <li>块元素内部可以容纳其他块元素或行元素。</li>
+            <li>可以定义宽度（width），也可以定义高度（height）。</li>
+            <li>可以定义四个方向的margin。</li>
+        </ol>
+    </blockquote>
+</div>
+
+<div id="demo-2" class="demo">
+    <h2>行内元素</h2>
+    <img src="../resource/img/inline-element.jfif">
+    <blockquote>
+        <ol>
+            <li>可以与其他行内元素位于同一行。</li>
+            <li>行内内部可以容纳其他行内元素，但不可以容纳块元素，不然会出现无法预知的效果。</li>
+            <li>无法定义高度（height），也无法定义宽度（width）。</li>
+            <li>可以定义 margin-left 和 margin-right，无法定义 margin-top 和 margin-bottom。</li>
+        </ol>
+    </blockquote>
+</div>
+
+<div id="demo-3" class="demo">
+    <h2>行内元素</h2>
+    <p>
+        常见的 inline-block 元素有两个：img 元素和 input 元素。对于这两个 inline-block 元素，我们一定要记住。
+    </p>
+    <blockquote>
+        <ol>
+            <li>可以定义 width 和 height。</li>
+            <li>可以与其他行内元素位于同一行。</li>
+        </ol>
+    </blockquote>
+</div>
+
+<div class="demo">
+    <h2>补充说明</h2>
+    <p>
+        此外对于块元素，IE6 和 IE7 不能识别 “display:inline-block”，加不加 “display:inline-block” 对它们完全没有任何影响。解决方法是：在
+        IE6 和 IE7
+        中用 “*display:inline;*zoom:1;” 来代替 “display:inline-block;”。对于行内元素，比如 a、span 等，display:inline-block
+        不存在兼容问题，所有浏览器都
+        可以识别，可以正常使用。当然 IE6 和 IE7 也逐渐淡出历史舞台了，这些了解一下即可。
+    </p>
+</div>
+
+</body>
+</html>

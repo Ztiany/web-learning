@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display 属性</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .demo {
+            margin-top: 30px;
+            width: 600px;
+            background-color: wheat;
+            color: #0C6A9D;
+        }
+
+        .table-img {
+            width: 500px;
+        }
+
+        #demo-4 div {
+            display: table-cell;
+            width: 150px;
+            height: 150px;
+            border: 1px solid gray;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        #demo-4 div + div {
+            border-left: none;
+        }
+
+        #demo-4 img {
+            width: 90px;
+            vertical-align: middle;
+        }
+
+        #demo-5-wrapper {
+            display: table-row;
+        }
+
+        #demo-5-img-box {
+            display: table-cell;
+            vertical-align: middle; /*垂直居中*/
+            text-align: center; /*水平居中*/
+            width: 150px;
+            border: 1px solid red;
+        }
+
+        #demo-5-img-box img {
+            width: 50px;
+        }
+
+        #demo-5-text-box {
+            display: table-cell;
+            width: 200px;
+            border: 1px solid red;
+            border-left: none;
+            padding: 10px;
+        }
+
+        #demo-6 ul {
+            list-style-type: none;
+            display: table;
+            width: 300px;
+        }
+
+        #demo-6 li {
+            display: table-cell;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            color: White;
+        }
+
+        #demo-6 ul li:nth-child(1) {
+            background-color: Red;
+        }
+
+        #demo-6 ul li:nth-child(2) {
+            background-color: Orange;
+        }
+
+        #demo-6 ul li:nth-child(3) {
+            background-color: Blue;
+        }
+
+        #demo-6 ul li:nth-child(4) {
+            background-color: silver;
+        }
+
+        #demo-6 ul li:nth-child(5) {
+            background-color: Purple;
+        }
+
+        #demo-7 ul {
+            list-style-type: none;
+            font-size: 0;
+        }
+
+        #demo-7 li {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 30px;
+            border: 1px dashed black;
+            text-align: center;
+            color: White;
+            background-color: Purple;
+        }
+
+    </style>
+</head>
+
+
+<body>
+<div class="demo" id="header">
+    <h1>Display 属性</h1>
+</div>
+
+<div class="demo" id="demo-1">
+    <h2>Display 属性说明</h2>
+    <img class="table-img" src="../resource/img/display-attribute.jfif">
+</div>
+
+<div class="demo" id="demo-2">
+    <h2>display:none 与 visibility:hidden 的区别</h2>
+    <blockquote>
+        <ol>
+            <li>“display:none”的元素被隐藏之后，不占据原来的位置。也就是说彻底地消失了，看不见也摸不着。</li>
+            <li>“visibility:hidden”的元素被隐藏之后，依然占据原来的位置。也就是说并没有彻底消失，看不见但摸得着。</li>
+        </ol>
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-3">
+    <h2>display:table, table-cell, table-row 的作用</h2>
+    <blockquote>
+        display 属性的 table、table-cell 和 table-row 值可以用于模拟表格布局，具有以下特点：
+
+        <ol>
+            <li>
+                table：
+                <ol>
+                    <li>元素被呈现为块级表格，类似于 table 元素。</li>
+                    <li>元素的直接子元素会被解释为表格行（tr）。</li>
+                    <li>表格行内部的直接子元素会被解释为表格单元格（td 或 th）。</li>
+                </ol>
+            </li>
+            <li>
+                table-cell：
+                <ol>
+                    <li>元素被呈现为一个表格单元格，类似于 td 或 th 元素。</li>
+                    <li>元素会以表格单元格的方式对齐和布局。</li>
+                    <li>元素默认会填充可用空间，如果需要，可以使用 width 和 height 属性进行调整。</li>
+                </ol>
+            </li>
+            <li>
+                table-row：
+                <ol>
+                    <li>元素被呈现为一个表格行，类似于 tr 元素。</li>
+                    <li>元素内部的直接子元素会被解释为表格单元格（td 或 th）。</li>
+                    <li>表格行内的元素会自动扩展以填充可用空间。</li>
+                </ol>
+            </li>
+        </ol>
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-4">
+    <h2>table-cell 应用：图片垂直居中于元素</h2>
+    <blockquote>
+        在 CSS 中，“display:table-cell” 可以让元素以表格单元格的形式呈现。也就是说，table-cell 类型的元素具备 td 元素的特点。
+    </blockquote>
+    <div><img src="../resource/img/girl01.png"></div>
+    <div><img src="../resource/img/girl01.png"></div>
+    <div><img src="../resource/img/girl01.png"></div>
+</div>
+
+<div class="demo" id="demo-5">
+    <h2>table-cell 应用：等高布局</h2>
+    <div id="demo-5-wrapper">
+        <div id="demo-5-img-box">
+            <img src="../resource/img/girl01.png" alt=""/>
+        </div>
+        <div id="demo-5-text-box">
+                      <span>
+                          《ONE PIECE》（海贼王、航海王）简称"OP"，是日本漫画家尾田荣一郎
+                            作画的少年漫画作品。在《周刊少年Jump》1997年34号开始连载。描写了拥有橡皮身体戴草帽的青年
+                            路飞，以成为"海贼王"为目标和同伴在大海展开冒险的故事。
+                      </span>
+        </div>
+    </div>
+</div>
+
+<div class="demo" id="demo-6">
+    <h2>table-cell 应用：自动平均划分元素</h2>
+    <blockquote>
+        <p>
+            如果我们想要使用 ul 来实现下面这种布局，一般都会用 float 来实现，并且还得精准计算每一个li的宽度。
+            但是如果给每个 li 元素都定义 “display:table-cell”，我们就不用显得如此麻烦。而且会自动平均划分元素。
+        </p>
+        <p>
+            当父元素定义 “display:table” 而子元素定义 “display:table-cell”
+            时，如果给父元素一定的宽度，父元素宽度就会根据子元素的个数进行自动平均划分。
+        </p>
+    </blockquote>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</div>
+
+<div class="demo" id="demo-7">
+    <h2>去除 inline-block 元素间距</h2>
+    <blockquote>
+        inline-block 元素之间是有间距的。在实际开发中，这种间距有时会对我们的布局产生影响。
+        大多数时候为了不影响布局，我们需要去除 inline-block 元素的间距。在 CSS 中，我们可以使用 “font-size:0” 来去除
+        inline-block 元素的间距。
+    </blockquote>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Float-Clear</title>
+    <style>
+        .demo {
+            margin-top: 40px;
+        }
+
+        .father {
+            margin: 10px;
+            width: 500px;
+            background: #0C6A9D;
+            border: 1px solid silver;
+        }
+
+        .father div {
+            padding: 10px;
+            margin: 15px;
+        }
+
+        .son1 {
+            background-color: hotpink;
+            float: left;
+        }
+
+        .son2 {
+            background-color: darkblue;
+            float: left;
+        }
+
+        .son3 {
+            background-color: red;
+        }
+
+        /*
+        一般都是在浮动元素后面再增加一个空元素，然后为这个空元素定义 clear:both; 来清除浮动。
+         */
+        .clear-both {
+            clear: both;
+        }
+
+        #demo2-father {
+            overflow: hidden;
+        }
+
+        .float-left {
+            float: left;
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            margin: 0 10px 10px 0;
+        }
+
+        .float-right {
+            float: right;
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            margin: 0 0 10px 10px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div id="header" class="demo">
+    <h1>清除浮动</h1>
+</div>
+
+<div class="demo" id="anti-demo1">
+    <h2>不清除浮动的影响</h2>
+    <blockquote>
+        父容器塌陷：当父容器只包含浮动元素和非浮动元素时，父容器的高度可能会塌陷，即父容器无法正常包裹浮动元素和非浮动元素，导致布局问题。这是因为浮动元素从文档流中脱离，父容器无法感知其高度。
+    </blockquote>
+    <div class="father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+    </div>
+</div>
+
+<div class="clear-both"></div>
+
+<div class="demo" id="anti-demo2">
+    <h2>不清除浮动的影响</h2>
+    <blockquote>
+        <ul>
+            <li>包裹效果：非浮动的块级元素（如 div
+                ）会尝试包裹浮动元素。当浮动元素位于非浮动元素的前面时，非浮动元素会尽可能地扩展宽度以适应浮动元素的位置。
+            </li>
+            <li>
+                破坏布局：如果非浮动元素位于浮动元素之前，并且没有足够的空间来容纳它们，那么非浮动元素可能会被浮动元素部分或完全覆盖，导致布局破坏。
+            </li>
+        </ul>
+    </blockquote>
+    <div class="father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+        <div class="son3">我是正常的 div，布局时不考虑浮动元素占据的空间</div>
+        <div class="son3"></div>
+        <div class="son3"></div>
+    </div>
+</div>
+
+
+<div class="demo" id="anti-demo3">
+    <h2>不清除浮动的影响</h2>
+    <blockquote>
+        文本环绕
+    </blockquote>
+    <div class="father">
+        <div class="float-left"></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor, lorem ut lobortis elementum, mi
+            risus condimentum felis, ut volutpat leo ligula et sem. Nullam semper ligula et lorem euismod, nec feugiat
+            lectus porttitor. Morbi ullamcorper, odio nec imperdiet pretium, leo metus vulputate mi, at pulvinar dui
+            tellus vel felis. Donec non dolor eu tellus dapibus aliquam. Integer eu cursus ex. Fusce tincidunt, eros ac
+            tincidunt lacinia, nisi velit suscipit felis, vitae eleifend nisl elit sed ante. Phasellus tristique, erat
+            ut eleifend auctor, elit risus interdum orci, nec feugiat magna tortor vel nunc. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam sed purus pretium, consectetur nibh
+            ac, semper metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+            egestas. Curabitur tincidunt dui nec nisl rhoncus, eget ullamcorper arcu tincidunt.</p>
+        <div class="float-right"></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in libero quis dolor ultrices blandit ac a
+            libero. Nulla facilisi. In interdum faucibus fermentum. Aliquam sed erat semper, posuere libero vel,
+            tristique lorem. Morbi tristique, odio et efficitur lacinia, nisl metus facilisis est, a tincidunt sem justo
+            a libero. Sed est ante, posuere non ullamcorper vitae, auctor ac nisl. Nam vestibulum magna a mauris
+            tristique, vitae convallis mi dapibus. Phasellus eget enim a ligula porta auctor. Mauris tempus ante nec
+            consequat lobortis. Aenean a interdum purus. Sed nec ligula a ante viverra semper. Fusce eleifend lacinia
+            felis vel semper. Sed et commodo nisi. Nulla facilisi. Aliquam id est a massa euismod tincidunt vel sed
+            magna. Nulla facilisi. Ut cursus consequat condimentum.</p>
+    </div>
+</div>
+
+
+<div class="demo" id="demo1">
+    <h2>使用 clear:both 清除浮动</h2>
+    <blockquote>
+        使用 clear 属性来清除浮动的缺点是增加一个多余的标签。
+    </blockquote>
+    <div class="father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+        <div class="clear-both"></div>
+        <div class="son3"></div>
+    </div>
+</div>
+
+<div class="demo" id="demo2">
+    <h2>使用 clear:both 清除浮动</h2>
+    <blockquote>
+        使用 “overflow:hidden” 清除浮动则不需要。不过 “overflow:hidden” 是一个小炸弹，它会将超出父元素部分的内容隐藏，有时候这并不是我们预期想要的效果。
+    </blockquote>
+    <div class="father" id="demo2-father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+    </div>
+</div>
+
+</body>
+</html>

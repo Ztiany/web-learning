@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Box-Mode-Border</title>
+</head>
+<body>
+
+“border:0” 与 “border:none” 的区别主要体现在两点：性能差异和兼容差异。
+
+<ol>
+  <li>
+    <p>
+      border:0 表示把 border 定义为 0px。虽然 0px 在页面上看不见，但是浏览器依然会对 border 进行渲染，渲染之后，实际上是一个像素为 “0” 的 border。
+      也就是说，“border:0” 需要占用内存。
+    </p>
+    <p>
+     border:none” 表示把 border 定义为 “none（无）”，浏览器解析 “border:none” 时并不会作出渲染。也就是说，“border:none” 不需要占用内存。
+    </p>
+  </li>
+  <li>
+    <p>
+      兼容性差异只存在于 IE6 和 IE7 的 input type=”button” 标签以及 button 标签中，其他浏览器不存在兼容问题。
+      “border:0” 在所有浏览器中的效果都一样，都是把边框隐藏（不是去掉）<br/>
+      “border:none” 对 IE6和 IE7 按钮的边框无效，在其他浏览器则会去掉按钮的边框
+    </p>
+  </li>
+</ol>
+</body>
+</html>
