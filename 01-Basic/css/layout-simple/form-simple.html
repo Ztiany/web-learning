@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>布局练习：简单表单</title>
+    <style>
+        form {
+            width: 320px;
+            font-family: Arial, serif;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /*清除每一个p中的浮动*/
+        p {
+            overflow: hidden;
+        }
+
+        label {
+            float: left;
+            width: 60px;
+            height: 40px;
+            line-height: 40px;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        input:not(#submit) {
+            float: left;
+            height: 16px;
+            padding: 10px;
+            border: 1px solid silver;
+        }
+
+        #tel, #pwd {
+            width: 228px;
+        }
+
+        #verifyCode {
+            width: 118px;
+            margin-right: 10px;
+        }
+
+        #submit {
+            width: 100px;
+            height: 40px;
+            border: 1px solid gray;
+            padding: 0;
+            background-color: #F1F1F1;
+        }
+    </style>
+</head>
+<body>
+
+<form action="#">
+    <p>
+        <label for="tel">手机号</label>
+        <input id="tel" type="text"/>
+    </p>
+    <p>
+        <label for="pwd">密码</label>
+        <input id="pwd" type="password"/>
+    </p>
+    <p id="ac">
+        <label for="verifyCode">验证码</label>
+        <input id="verifyCode" type="text"/>
+        <input id="submit" type="submit"/>
+    </p>
+</form>
+
+</body>
+</html>

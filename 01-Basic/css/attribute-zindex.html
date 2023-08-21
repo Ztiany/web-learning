@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性：z-index</title>
+</head>
+<body>
+
+<ol>
+    <li>
+        默认情况下，元素的 z-index 属性处于不激活状态。也就是说默认情况下，设置元素的 z-index 属性无效。z-index 属性只有在元素定义
+        “position:relative”、
+        “position:absolute“ 或者 “position:fixed” 时才会被激活。当然，对于 “position:fixed” 的 z-index 也没什么值得去管，直接忽略即可。
+    </li>
+    <li>
+        W3C 标准中对 CSS 的 z-index 属性是这样定义的：“z-index 属性设置元素的堆叠顺序，拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。该属性设置一个定位元素沿
+        z 轴的位置，z轴定义为垂直延伸到显示区的轴。如果为正数，则离用户更近，为负数，则表示离用户更远。”
+    </li>
+    <li>
+        默认情况下，元素 z-index 属性值为 auto。z-index 值为正数的元素在 z-index 值为 0 的上面，z-index 值为负数的元素在
+        z-index 值为 0 的下面。无论是正数还是负数，z-index 值较大的元素会叠加在 z-index
+        值较小的元素之上。如果z-index值相同，则遵循“后来者居上”规则来叠加
+    </li>
+</ol>
+</body>
+</html>

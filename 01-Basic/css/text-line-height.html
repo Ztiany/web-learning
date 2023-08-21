@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本：line-height</title>
+    <style>
+
+        .demo {
+            margin-top: 30px;
+            margin-left: 30px;
+            background-color: wheat;
+            color: #0C6A9D;
+            width: 550px;
+        }
+
+        .illustration-img {
+            width: 400px;
+        }
+
+        #demo-1-container {
+            line-height: 30px;
+            height: 30px;
+            border: 1px solid red;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="demo" id="header">
+    <h1>行高是什么？</h1>
+    <blockquote>
+        行高（即line-height），指的是“两行基线之间的垂直距离”，参考下图：
+        <p>
+            <img class="illustration-img" src="../resource/img/text-line-height.jfif" alt="line-height">
+        </p>
+        另外一些概念：
+        <ol>
+            <li>行距，指的是上一行的底线到下一行的顶线的垂直距离。也就是两行文字之间的空隙。</li>
+            <li>内容区，指的是行盒子顶线到底线之间的垂直距离。</li>
+            <li>行框，指的是两行文字“行半距分割线”之间的垂直距离。</li>
+        </ol>
+        line-height 有默认值，当没有定义 line-height 属性时，浏览器就会采用默认的 line-height 值。
+        浏览器默认的line-height值是通常是大约 1.2 至 1.4的 倍数，具体取决于浏览器和操作系统的默认设置。
+        这个默认值是相对于元素的字体大小而言的。
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-1">
+    <h2>单行文本居中</h2>
+    <blockquote>
+        <p>
+            height 和 line-height 一样时，可以实现单行文本在垂直方向上的居中对齐，是因为 line-height
+            属性控制了行框的高度，而文本内容位于行框的中间。
+
+            当 line-height 与 height 值相等时，行框的高度与容器的高度相匹配。由于文本内容默认垂直居中对齐在行框中，因此文本在垂直方向上就会居中对齐。
+        </p>
+    </blockquote>
+    <div id="demo-1-container">
+        I am Alien, 我是外星人。
+    </div>
+</div>
+
+<div class="demo" id="demo-2">
+    <h2>line-height 取值为百分比值、em 值、无单位数字</h2>
+    <blockquote>
+        <p>
+            当 line-height 值为百分比值或者 em 值时，当前元素的行高是相对于父元素的 font-size 值来计算的。计算公式如下：
+            <code>
+                <br/>
+                <br/>
+                line-height =（父元素 font-size）×（百分比）
+                <br/>
+                line-height =（父元素 font-size）×（em 值）
+            </code>
+        </p>
+        <br/>
+        <p>
+            line-height 还支持无单位数字的属性取值，在 CSS 中也只有 line-height 属性具有这个特点。
+            当 line-height 值为无单位数字时，实际的行高是相对于当前元素的 font-size 值来计算的。计算公式如下：
+            <code>
+                <br/>
+                <br/>
+                line-height =（当前元素的font-size）×（无单位数字）
+            </code>
+        </p>
+    </blockquote>
+</div>
+
+</body>
+</html>

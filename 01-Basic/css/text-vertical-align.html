@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本：vertical-align</title>
+    <style>
+
+        .demo {
+            margin-top: 30px;
+            margin-left: 30px;
+            background-color: wheat;
+            color: #0C6A9D;
+            width: 550px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        #demo-1 img {
+            width: 80px;
+            height: 80px;
+        }
+
+        #demo-1-img1 {
+            vertical-align: top;
+        }
+
+        #demo-1-img2 {
+            vertical-align: middle;
+        }
+
+        #demo-1-img3 {
+            vertical-align: bottom;
+        }
+
+        #demo-1-img4 {
+            vertical-align: baseline;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="demo" id="header">
+    <h1>vertical-align 的作用</h1>
+    <blockquote>
+        W3C 官方对 vertical-align 属性的定义有四个方面：
+        <ol>
+            <li>vertical-align 属性用于定义“周围的文字、inline 元素以及 inline-block 元素”相对于该元素基线的垂直对齐方式。这里的“该元素”指的是被定义了
+                vertical-align 属性的元素。
+            </li>
+            <li>在表格单元格中，vertical-align 属性可以定义单元格 td 元素中内容的对齐方式。td 元素是 table-cell 元素，也就是说
+                vertical-align 属性对 table-cell 类型元素有效。
+            </li>
+            <li>vertical-align 属性对 inline 元素、inline-block 元素和 table-cell 元素有效，对块元素无效。</li>
+            <li>vertical-align 属性允许指定负长度值（如 -2px）和百分比值（如 50%）。</li>
+        </ol>
+        <p>
+            我们知道每一行文字可以看成一个行盒子，<span
+                class="bold">其实每一个 inline-block 元素也可以看成一个行盒子</span>。其中，每一个行盒子都有四条线：顶线、中线、基线和底线。
+        </p>
+        <p>
+            vertical-align 属性中的基线跟 line-height 属性中的基线是一样的道理。在 CSS 中，vertical-align 属性最见的属性值有四个：
+        </p>
+        <ol>
+            <li>top（顶部对齐）</li>
+            <li>middle（中部对齐）</li>
+            <li>baseline（基线对齐）</li>
+            <li>bottom（底部对齐）</li>
+        </ol>
+        <p>
+            vertical-align 属性取值有三种情况：负值、百分比和关键字。
+        </p>
+        <ol>
+            <li>vertical-align 属性取值可以为负值，例如 “vertical-align:-2px” 表示元素相对于基线向下偏移
+                2px。此方法常常用于解决单选框或复选框与文字垂直对齐的问题。
+            </li>
+            <li>vertical-align 属性取值可以为百分比，这个百分比是相对于当前元素所继承的 line-height 属性值决定的。举个例子，对于
+                “vertical-align:50%”，假如当前元素所继承的 line-height 为 20px，则 “vertical-align:50%” 实际上等价于
+                “vertical-align:10px”。其中，vertical-align:10px” 表示元素相对于基线向上偏移 10px。
+            </li>
+            <li>
+                vertical 属性取值可以为关键字，分别是：top, middle, baseline, bottom。
+            </li>
+        </ol>
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-1">
+    <h2>vertical 取值</h2>
+    <blockquote>
+        <p>
+            height 和 line-height 一样时，可以实现单行文本在垂直方向上的居中对齐，是因为 line-height
+            属性控制了行框的高度，而文本内容位于行框的中间。
+
+            当 line-height 与 height 值相等时，行框的高度与容器的高度相匹配。由于文本内容默认垂直居中对齐在行框中，因此文本在垂直方向上就会居中对齐。
+        </p>
+    </blockquote>
+    <div id="demo-1-container">
+        绿叶学习网<img id="demo-1-img1" src="../resource/img/girl01.png" alt=""/>绿叶学习网（<strong>
+        top</strong>）
+        <hr/>
+        绿叶学习网<img id="demo-1-img2" src="../resource/img/girl01.png" alt=""/>绿叶学习网（<strong>
+        middle</strong>）
+        <hr/>
+        绿叶学习网<img id="demo-1-img3" src="../resource/img/girl01.png" alt=""/>绿叶学习网（<strong>
+        bottom</strong>）
+        <hr/>
+        绿叶学习网<img id="demo-1-img4" src="../resource/img/girl01.png" alt=""/>绿叶学习网（<strong>
+        baseline</strong>）
+    </div>
+    <blockquote>
+        根据 W3C 的定义，vertical-align 属性用于定义周围文字、inline 元素或 inline-block
+        元素的基线相对于该元素的基线的垂直对齐方式。在这个例子中，vertical-align 属性定义了周围的文字相对于 img
+        元素基线的垂直对齐方式。
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-2">
+    <h2>table-cell 元素</h2>
+    <blockquote>
+        table-cell元素跟 inline、inline-block 元素使用 vertical-align 是有很大区别的。
+        <ol>
+            <li>
+                inline 元素和 inline-block 元素的 vertical-align 是针对周围的元素来说的，vertical
+                定义的是周围元素相对于当前元素的对齐方式。
+            </li>
+            <li>
+                table-cell 元素的 vertical-align 属性是针对<span class="bold">自身而言</span>。vertical-align
+                定义的是内部子元素相对于自身的对齐方式。
+            </li>
+        </ol>
+    </blockquote>
+</div>
+
+</body>
+</html>

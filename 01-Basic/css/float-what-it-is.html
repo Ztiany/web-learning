@@ -4,74 +4,219 @@
     <meta charset="UTF-8">
     <title>Float-What</title>
     <style>
-        #father {
+
+        .demo {
+            margin-top: 30px;
+            margin-left: 30px;
+            background-color: wheat;
+            color: #0C6A9D;
+            width: 550px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .second-list li {
+            list-style: square;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        #demo-1-father {
             margin: 10px;
             width: 300px;
             background: #0C6A9D;
             border: 1px solid silver;
         }
 
-        #father div {
+        #demo-1-father div {
             padding: 10px;
             margin: 15px;
         }
 
-        /*
-        由于 box1 设置为左浮动，box1 变成了浮动元素，因此此时 box1 的宽度不再延伸，而是由内容宽度决定其宽度。
-        接着相邻的下一个 div 元素（box2）就会紧贴着 box1，这是浮动引起的效果。
-        */
-        #son1 {
+        #demo-1-son1 {
             background-color: hotpink;
             float: left;
         }
 
-        /*
-        我们都知道在正常文档流的情况下，块元素都是独占一行的。如果想要使两个或者多个块元素并排在同一行，这个时候可以考虑使用浮动，通过将块元素脱离正常文档流来实现。
-        浮动，可以使得元素移到左边或者右边，并且允许后面的文字或元素环绕着它。浮动最常用于实现水平方向上的并排布局，例如两列布局、多列布局。
-
-        当设置两个孩子都为浮动之后，父元素变成一条线，其实这是浮动引起的问题，浮动的元素不能撑起父元素的 Size。
-        */
-        #son2 {
+        #demo-1-son2 {
             background-color: darkblue;
             float: left;
         }
+
+        #demo-2-son-1 {
+            float: left;
+            width: 300px;
+            height: 100px;
+            background-color: blue;
+            font-size: 10px;
+            color: white;
+        }
+
+        #demo-3-float-container {
+            border: 1px solid yellow;
+        }
+
+        #demo-3-float {
+            width: 200px;
+            float: left;
+            height: 20px;
+            background-color: red;
+        }
+
+        #demo-3-no-float-1 {
+            margin-top: 10px;
+            width: 150px;
+            height: 20px;
+            background-color: green;
+        }
+
+        #demo-3-no-float-2 {
+            width: 150px;
+            height: 20px;
+            background-color: blue;
+        }
+
     </style>
 </head>
 
-
 <body>
-<div id="father">
-    <div id="son1"></div>
-    <div id="son2"></div>
+
+<div class="demo" id="header">
+    <h1>浮动</h1>
+    <div>
+        <blockquote>
+            在 HTML 中，当元素设置了浮动（float）属性后，会引发以下影响：
+            <ol>
+                <li>
+                    布局改变：浮动元素会从正常的文档流中脱离出来，并向左或向右浮动到其容器的左侧或右侧。这会导致其他元素在布局时考虑浮动元素的位置，以及可能在浮动元素周围进行重新排列。
+                </li>
+                <li>
+                    文本环绕：浮动元素的存在会导致其他非浮动元素和文本环绕在其周围。文本内容会自动环绕在浮动元素的旁边，使得浮动元素的位置对周围内容产生影响。
+                </li>
+                <li>
+                    宽度调整：浮动元素的宽度默认会根据其内容自动调整，以适应其父容器或其他限制。如果浮动元素没有明确设置宽度，它会收缩为适应内容的宽度。
+                </li>
+                <li>
+                    父容器塌陷：当父容器只包含浮动元素时，父容器的高度可能会塌陷，即父容器无法正常包裹浮动元素。这是因为浮动元素从文档流中脱离，父容器无法感知其高度。
+                </li>
+                <li>清除浮动：浮动元素会影响后续元素的布局。为了解决这个问题，可以使用清除浮动的技术，如添加清除浮动的样式规则（clear:
+                    both）或使用 clearfix 类。
+                </li>
+                <li>
+                    层叠顺序：浮动元素在层叠顺序（z-index）方面具有特殊性。浮动元素的层叠顺序比非浮动元素低，但比普通文本节点高。
+                </li>
+            </ol>
+
+            <p>
+                需要注意的是，浮动元素的影响是在其容器内部和周围的元素之间产生的。其他元素会相应地进行调整以适应浮动元素的位置和大小。开发者可以使用适当的
+                CSS 技术和属性来控制浮动元素的布局效果，如清除浮动、使用浮动布局等。
+            </p>
+            <p style="margin-top: 10px">
+                float 属性很简单，只有三个取值：left、right 和 none。但是浮动涉及的理论知识却非常多，其中包括：块元素和行内元素、CSS
+                盒子模型、脱离文档流、BFC、层叠上下文。
+            </p>
+        </blockquote>
+    </div>
+
 </div>
 
-<div>
+<div class="demo" id="demo-1">
+    <h2>体验浮动</h2>
     <blockquote>
-        在 HTML 中，当元素设置了浮动（float）属性后，会引发以下影响：
         <ol>
             <li>
-                布局改变：浮动元素会从正常的文档流中脱离出来，并向左或向右浮动到其容器的左侧或右侧。这会导致其他元素在布局时考虑浮动元素的位置，以及可能在浮动元素周围进行重新排列。
+                由于 box1 设置为左浮动，box1 变成了浮动元素，因此此时 box1 的宽度不再延伸，而是由内容宽度决定其宽度。
+                接着相邻的下一个 div 元素（box2）就会紧贴着 box1，这是浮动引起的效果。
             </li>
             <li>
-                文本环绕：浮动元素的存在会导致其他非浮动元素和文本环绕在其周围。文本内容会自动环绕在浮动元素的旁边，使得浮动元素的位置对周围内容产生影响。
-            </li>
-            <li>
-                宽度调整：浮动元素的宽度默认会根据其内容自动调整，以适应其父容器或其他限制。如果浮动元素没有明确设置宽度，它会收缩为适应内容的宽度。
-            </li>
-            <li>
-                父容器塌陷：当父容器只包含浮动元素时，父容器的高度可能会塌陷，即父容器无法正常包裹浮动元素。这是因为浮动元素从文档流中脱离，父容器无法感知其高度。
-            </li>
-            <li>清除浮动：浮动元素会影响后续元素的布局。为了解决这个问题，可以使用清除浮动的技术，如添加清除浮动的样式规则（clear:
-                both）或使用clearfix类。
-            </li>
-            <li>
-                层叠顺序：浮动元素在层叠顺序（z-index）方面具有特殊性。浮动元素的层叠顺序比非浮动元素低，但比普通文本节点高。
+                我们都知道在正常文档流的情况下，块元素都是独占一行的。如果想要使两个或者多个块元素并排在同一行，这个时候可以考虑使用浮动，通过将块元素脱离正常文档流来实现。
+                浮动，可以使得元素移到左边或者右边，并且允许后面的文字或元素环绕着它。浮动最常用于实现水平方向上的并排布局，例如两列布局、多列布局。
+
+                当设置两个孩子都为浮动之后，父元素变成一条线，其实这是浮动引起的问题，浮动的元素不能撑起父元素的 Size。
             </li>
         </ol>
-
-        需要注意的是，浮动元素的影响是在其容器内部和周围的元素之间产生的。其他元素会相应地进行调整以适应浮动元素的位置和大小。开发者可以使用适当的CSS技术和属性来控制浮动元素的布局效果，如清除浮动、使用浮动布局等。
     </blockquote>
+    <div id="demo-1-father">
+        <div id="demo-1-son1"></div>
+        <div id="demo-1-son2"></div>
+    </div>
 </div>
+
+<div class="clear"></div>
+
+<div class="demo" id="demo-2">
+    <h2>重要特性</h2>
+    <blockquote>
+        对于浮动，具有以下两个最重要的特点。
+        <ol>
+            <li>当一个元素定义了 “float:left” 或 “float:right” 时，不管这个元素之前是 inline、inline-block
+                或者其他类型，<span class="bold">都会变成 block 类型</span>。也就是说，浮动元素表现为块元素效果，可以定义
+                width、height、padding 和 margin。这里特别要注意一下，我们可以使用 margin-left 或 margin-right
+                来定义浮动元素与其他元素之间的间距。
+            </li>
+            <li>
+                当一个元素定义了 “float:left” 或 “float:right” 时，这个元素会脱离文档流，后面的元素会紧跟着填上空缺的位置。
+            </li>
+        </ol>
+    </blockquote>
+    <div id="demo-2-father-1">
+        <span id="demo-2-son-1">
+            span 本身是 inline 元素，但是设置了浮动之后，就变成了块元素，并且可以设置 width、height 和 margin 等。
+        </span>
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+<div class="demo" id="demo-3">
+    <h2>浮动的影响</h2>
+    <blockquote>
+        对于浮动，具有以下两个最重要的特点。
+        <ol>
+            <li>
+                <span class="bold">对自身的影响</span>：
+                如果一个元素设置了浮动，则不管这个元素是什么类型，都会转化为块元素，也就是 display 属性值为 block。
+            </li>
+            <li>
+                <span class="bold">对父元素影响</span>：
+                如果一个元素设置了浮动，它会脱离正常文档流。如果浮动元素的高度 height 大于父元素的高度 height，或者父元素没有定义高度
+                height，此时浮动元素会脱离父元素。这就是我们常见的“父元素高度塌陷”。
+            </li>
+            <li>
+                <span class="bold">兄弟元素是浮动元素</span>：
+                <ol class="second-list">
+                    <li>
+                        当一个浮动元素碰到同一个方向的兄弟元素时，这些元素会从左到右、从上到下，一个接着一个紧挨着排列。
+                    </li>
+                    <li>
+                        当一个浮动元素碰到同一个方向的兄弟元素时，这两个元素会移向两边（如果父元素宽度足够的话）。
+                    </li>
+                    <li>
+                        兄弟元素不是浮动元素，会有覆盖效果，比如下面第一个红色的 div 脱离了文档流，并且覆盖了第二、三这两个
+                        div。
+                    </li>
+                    <li>
+                        从“浮动元素对其父元素的影响”我们知道，如果父元素没有定义高度 height，此时浮动元素会脱离父元素，造成父元素高度塌陷。
+                        但是当父元素同时也是一个浮动元素的时候，这个父元素会自适应地包含该子元素。也就是说，如果一个元素是浮动元素（没有定义
+                        height），
+                        并且它的子元素也是浮动元素，则这个浮动元素会自适应地包含该子元素。
+                    </li>
+                </ol>
+            </li>
+        </ol>
+    </blockquote>
+    <div id="demo-3-float-container">
+        <div id="demo-3-float"></div>
+        <div id="demo-3-no-float-1"></div>
+        <div id="demo-3-no-float-2"></div>
+    </div>
+</div>
+
+<div class="clear"></div>
 
 </body>
 </html>

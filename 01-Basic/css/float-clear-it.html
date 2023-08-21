@@ -5,6 +5,7 @@
     <title>Float-Clear</title>
     <style>
         .demo {
+            width: 500px;
             margin-top: 40px;
         }
 
@@ -59,6 +60,18 @@
             height: 200px;
             background-color: yellow;
             margin: 0 0 10px 10px;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        .clearfix::after {
+            clear: both;
+            content: "";
+            display: block;
+            height: 0;
+            visibility: hidden;
         }
 
     </style>
@@ -149,11 +162,33 @@
 </div>
 
 <div class="demo" id="demo2">
-    <h2>使用 clear:both 清除浮动</h2>
+    <h2>使用 overflow:hidden 清除浮动</h2>
     <blockquote>
         使用 “overflow:hidden” 清除浮动则不需要。不过 “overflow:hidden” 是一个小炸弹，它会将超出父元素部分的内容隐藏，有时候这并不是我们预期想要的效果。
     </blockquote>
     <div class="father" id="demo2-father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+    </div>
+</div>
+
+<div class="demo" id="demo3">
+    <h2>使用 "::after伪元素" 清除浮动</h2>
+    <blockquote>
+        使用 “clear:both” 和 “overflow:hidden” 来清除浮动都有明显的弊端。在实际开发中，比较好的解决方案是使用 “::after
+        伪元素”结合“clear:both”来实现。
+        <ol>
+            <li>
+                "::after" 伪元素结合 “clear:both” 来清除浮动的方式，我们推荐用来定义成公共类（如类名为
+                clearfix），然后进行全局引用，以便减少 CSS 代码。
+                其中：":after" 是伪元素，在 CSS3 的动画效果中使用比较多。"::before" 和：":after" 都是常用的伪元素，
+            </li>
+            <li>
+                "*zoom:1" 用于解决 IE6、IE7 浮动问题。
+            </li>
+        </ol>
+    </blockquote>
+    <div class="father clearfix">
         <div class="son1"></div>
         <div class="son2"></div>
     </div>
