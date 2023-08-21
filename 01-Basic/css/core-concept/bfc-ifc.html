@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC&IFC</title>
+    <style>
+        .demo {
+            padding: 10px;
+            margin-top: 30px;
+            margin-left: 30px;
+            background-color: wheat;
+            color: #0C6A9D;
+            width: 600px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="demo" id="header">
+    <h1>BFC 与 IFC</h1>
+    <blockquote>
+        在 CSS 中，页面中任何一个元素都可以看成是一个盒子。在普通文档流（normal flow）中，盒子会参与一种格式上下文（formatting
+        context）。
+        这个盒子可能是<span class="bold">块盒子（block-level box）</span>，也可能是<span class="bold">行内盒子（inline-level
+        box）</span>。一个盒子只能是块盒子或者是行内盒子，不能同时是块盒子又是行内盒子。
+        其中块盒子参与 BFC（块级格式上下文），行内盒子参与 IFC（行级格式上下文）。
+    </blockquote>
+</div>
+
+<div class="demo">
+    <h2>格式上下文（formatting context）</h2>
+    <blockquote>
+        格式上下文是 W3C CSS2.1 规范中的一个重要概念。它指的是页面中的一块渲染区域，并且这个格式上下文有一套自己的渲染规则。
+        <span class="bold">格式上下文决定了其内部元素将如何定位，以及和其他元素之间的关系</span>。
+        <p style="margin-top: 10px">
+            格式上下文有两种：
+        </p>
+        <ol>
+            <li>块级格式上下文（Block Formatting Context, BFC）。</li>
+            <li>行级格式上下文（Inline Formatting Context, IFC）。</li>
+        </ol>
+    </blockquote>
+</div>
+
+<div class="demo">
+    <h2>盒子（box）</h2>
+    <blockquote>
+        盒子，又称 CSS 盒子，是 CSS 布局的基本单位。简单来说，一个页面就是由很多个盒子组成的。
+        元素的类型和 display 属性决定了盒子的类型。不同类型的盒子，会参与不同的格式上下文。
+        <p style="margin-top: 10px">
+            有两种盒子：
+        </p>
+        <ol>
+            <li>
+                <p>
+                    块盒子，即 block-level box。元素类型（即 display 属性）为 block、inline-block、table、list-item 的元素，会生成块盒子。
+                </p>
+                <p>
+                    块盒子（<span class="bold">除了 inline-block</span>）会参与块级格式上下文。也就是说，元素类型为
+                    block、table、list-item 的元素都会参与块级格式上下文（BFC）。
+                </p>
+            </li>
+            <li>
+                行内盒子，即 inline-level box。元素类型（即 display 属性）为 inline、inline-table 的元素，会生成行内盒子。
+
+                行内盒子（<span class="bold">加上 inline-block</span>）会参与行级格式上下文。 也就是说，元素类型为
+                inline、inline-block、inline-table 的元素都会参与行级格式上下文（IFC）。
+            </li>
+        </ol>
+    </blockquote>
+</div>
+<div class="demo">
+    <h2>什么是 BFC？</h2>
+    <blockquote>
+        BFC，全称 Block Formatting Context（块级格式上下文）。它是一个独立的渲染区域，只有块盒子（block-level box）参与。
+        块级格式上下文规定了内部的块盒子是如何布局的，并且这个渲染区域与外部区域毫不相关。
+    </blockquote>
+
+    <div style="margin-top: 30px;">
+        <h3>如何创建 BFC？</h3>
+        <blockquote>
+            <p>
+                浮动元素，绝对定位元素（position 为 absolute 或 fixed），元素类型（即 display 属性）为
+                inline-block、table-caption、table-cell，
+                以及 overflow 属性不为 visible 的元素将会创建一个新的块级格式上下文（BFC）。
+            </p>
+            <p style="margin-top: 10px">如果一个元素具备以下任何一个条件，则该元素都会创建一个新的 BFC。</p>
+            <ol>
+                <li>根元素。</li>
+                <li>float 属性除了 none 以外的值，也就是 “float:left” 和 “float:right”。</li>
+                <li>position 属性除了 static 和 relative 以外的值，也就是 “position:absolute” 和 “position:fixed”。</li>
+                <li>
+                    overflow 属性除了 visible 以外的值，也就是 “overflow:auto”，“overflow:hidden” 和 “overflow:scroll”。
+                </li>
+                <li>元素类型（即 display 属性）为 inline-block、table-caption、table-cell。</li>
+            </ol>
+            <p style="margin-top: 10px"> 虽然这些属性都可以创建 BFC，但是也会产生一些效果。 </p>
+            <ol>
+                <li>float:left 和 float:right 会将元素移到左边或右边，并被其他元素环绕。</li>
+                <li>overflow:hidden 会将超出元素的内容隐藏。</li>
+                <li>overflow:scroll 会产生多余的滚动条。</li>
+                <li>display:table 可能引发响应性问题。</li>
+            </ol>
+
+            <p style="margin-top: 20px;color: red">
+                类型为 flex 和 inline-flex 的元素也会创建 BFC，只不过这些是 CSS3 的内容，在此忽略。此外根据定义，类型为
+                block、table 的元素不会创建 BFC。
+                小伙伴们可能就有疑问了，为什么 block 类型元素不会创建 BFC 啊？最开始提到：元素类型（即 display 属性）为
+                block、table、list-item 的元素，
+                会生成块盒子（block-level box），然后块盒子会参与 BFC。
+                其实从这句话我们已经得到明确答案了：block、table、list-item 等类型的元素的是参与 BFC，而不是创建 BFC。
+            </p>
+            <div style="margin-top: 20px;color: red">
+                <p>
+                    实际上，块级元素（block）和表格元素（table）本身并不会创建新的 BFC（Block Formatting Context）。BFC 是由一些特定的
+                    CSS 属性创建的，如 float（除了 none），position（除了 static 和 relative），display（如 inline-block,
+                    table-cell, table-caption, flex, grid），或者 overflow（除了 visible）等。
+                </p>
+                <p>
+                    也就是说，虽然块级元素（block）和表格元素（table）在布局中占据了块级的空间，但是它们并不会自动创建新的
+                    BFC。只有当它们或它们的子元素应用了上述的某些 CSS 属性时，才会创建新的 BFC。
+                </p>
+                <p>
+                    这种设计有其特定的原因。BFC 有一些特殊的布局规则，如 BFC 中的元素会在垂直方向上一个接一个地放置，BFC
+                    可以阻止元素被浮动元素覆盖等。这些规则在某些情况下是非常有用的，但在其他情况下可能会导致不必要的复杂性。因此，只有在需要这些特性时，才会通过特定的
+                    CSS 属性来创建 BFC。
+                </p>
+
+            </div>
+        </blockquote>
+    </div>
+
+    <div>
+        <h3>BFC 的特点</h3>
+        <blockquote>
+            W3C 标准描述 BFC 的特点共有两条：
+            <ol>
+                <li>在一个 BFC 中，盒子从顶端开始垂直一个接着一个地排列，两个相邻盒子之间的垂直间距由 margin 属性决定。在同一个
+                    BFC 中，两个相邻块盒子之间垂直方向上的外边距会叠加。
+                </li>
+                <li>在一个 BFC
+                    中，每一个盒子的左外边界（margin-left）会紧贴着容器的左边（border-left）（对于从右到左的格式化，则相反），即使存在浮动元素也是如此。
+                </li>
+            </ol>
+            <p style="margin-top: 10px">
+                从上面的 W3C 标准定义，我们可以得出以下几点重要结论（非常重要，请字斟句酌地理解记忆）。
+            </p>
+            <ol>
+                <li>在一个 BFC 内部，盒子会在垂直方向上一个接着一个地排列。</li>
+                <li>在一个 BFC 内部，相邻的 margin-top 和 margin-bottom 会叠加。</li>
+                <li>在一个 BFC 内部，每一个元素的左外边界会紧贴着包含盒子的左边，即使存在浮动也是如此。</li>
+                <li>在一个 BFC 内部，如果存在内部元素是一个新的 BFC，并且存在内部元素是浮动元素。则（内部的） BFC 的区域不会与
+                    float 元素的区域重叠。
+                </li>
+                <li>BFC 就是页面上的一个隔离的盒子，该盒子内部的子元素不会影响到外面的元素。</li>
+                <li>计算一个 BFC 的高度时，其内部浮动元素的高度也会参与计算。</li>
+            </ol>
+        </blockquote>
+    </div>
+</div>
+
+</body>
+</html>

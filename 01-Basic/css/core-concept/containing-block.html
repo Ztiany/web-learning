@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>核心：包含块</title>
+    <style>
+        .demo {
+            padding: 10px;
+            margin-top: 30px;
+            margin-left: 30px;
+            background-color: wheat;
+            color: #0C6A9D;
+            width: 600px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="demo" id="header">
+    <h1>什么是包含块？</h1>
+    <blockquote>
+        包含块是什么呢？简单来说，就是可以决定一个元素大小和定位的元素。
+        <div>
+            <ol>
+                <li>
+                    包含块是视觉格式化模型中的一个重要概念，它与 CSS 盒子模型类似。
+                    包含块也可以理解为一个矩形盒子，这个矩形的作用是为这个矩形内部的后代元素（子元素、孙元素等）提供一个参考。
+                    一个元素的大小和定位往往是由该元素所在的包含块决定的。
+                </li>
+                <li>
+                    通常情况下，一个元素的包含块是由离它最近的“块级祖先元素”的“内容边界”决定的。
+                    <span class="bold">
+                    但当元素被设置为绝对定位时，此时
+                    该元素的包含块是由离它最近的 “position:relative” 或 “position:absolute” 的祖先元素决定。
+                    </span>
+                    一个元素生成的盒子会扮演该元素的内部元素包含块的角色。也就是说，一个元素的 CSS 盒子为它的内部元素建造了包含块。
+                </li>
+            </ol>
+        </div>
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-1">
+    <h2>包含块的判定以及包含块的范围</h2>
+    <blockquote>
+        一个元素会为它的内部元素创建包含块，内部元素的大小以及定位都跟它的包含块有关。那么是不是说一个元素的包含块就是它的父元素呢？答案是否定的。
+        <ol>
+            <li>
+                <span class="bold">根元素：</span>
+                根元素（HTML 元素），是一个页面中最顶端的元素，它没有父元素。根元素存在的包含块，被称为“初始包含块（initial
+                containing block）。
+            </li>
+            <li>
+                <span class="bold">固定定位元素：</span>
+                如果元素的 position 属性为 fixed，那么它的包含块是当前可视窗口，也就是当前浏览器窗口。
+            </li>
+            <li>
+                <span class="bold">静态定位元素和相对定位元素：</span>
+                如果元素的 position 属性为 static 或 relative，那么它的包含块是它最近的块级祖先元素创建的。祖先元素必须是
+                block、inline-block 或者 table-cell 类型。
+            </li>
+            <li>
+                <span class="bold">绝对定位元素：</span>
+                如果元素的 position 属性为 absolute，那么它的包含块是由最近的 position 属性为非 static 的祖先元素。
+                这里的祖先元素可以是块元素，也可以是行内元素。
+                <p style="font-size: 10px;color: red">
+                    绝对定位元素是根据其包含块来定位的，这个包含块是离它最近的 position 属性不为 static 的祖先元素。如果绝对定位元素找不到
+                    position 属性不为 static 的祖先元素，则它的包含块是根元素（html 元素）。
+                </p>
+            </li>
+        </ol>
+    </blockquote>
+
+    <blockquote>
+        对于包含块的范围，我们也分两种情况考虑。
+        <ol>
+            <li>如果祖先元素是块元素，则包含块的范围为祖先元素的 padding edge 形成。</li>
+            <li>如果祖先是行内元素，则包含块取决于祖先元素的 direction 属性。</li>
+        </ol>
+        <p style="font-size: 10px;color: red">
+            当祖先为行内元素时，包含块的范围判定比较复杂，而且也没多少用处，此处不详细展开，可以参考<a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block"> MDN 文档</a>。
+        </p>
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-2">
+    <h2>层叠上下文</h2>
+    <blockquote>
+        层叠上下文是一个非常重要的概念。理解层叠上下文，
+        不仅可以帮助我们深入理解 z-index 对元素堆叠顺序的控制，而且对于我们深入理解浮动和定位也是非常重要的。（下面内容只针对
+        CSS2.1 而言）
+    </blockquote>
+
+    <h3>什么是层叠上下文（stacking context）</h3>
+    <blockquote>
+        <p>
+            层叠上下文，是 HTML 中的一个三维的概念。我们知道，虽然一个网页是平面的，但实际上网页是三维结构，除了 x 轴、y 轴，它还有
+            z 轴。 z 轴往往都是用来设定层的先后顺序的。
+        </p>
+        <p style="margin-top: 10px">
+            层叠上下文跟块级格式上下文（BFC）相似，是可以创建出来的。也就是说，跟创建 BFC 一样，你可以在 CSS
+            中添加一定的属性来将某个元素创建一个层叠上下文出来。
+        </p>
+        <div style="margin-top: 10px">
+            <p>
+                如果一个元素具备以下任何一个条件（不考虑 CSS3），则该元素会创建一个新的层叠上下文。
+            </p>
+            <ol>
+                <li>根元素</li>
+                <li>z-index 不为 auto 的定位元素</li>
+            </ol>
+            注意：根元素会创建一个层叠上下文，我们称之为“根层叠上下文”。这个与根元素创建一个 BFC 是一样的。
+        </div>
+    </blockquote>
+
+    <h3 style="margin-top: 10px;">什么是层叠级别（stacking level）？</h3>
+    <blockquote>
+        我们知道了可以使用 z-index 属性为一个元素创建一个新的层叠上下文。
+        但一个元素往往会有背景色、浮动子元素、定位子元素等，那么这些东西又是遵循着怎样的顺序来堆叠的呢？
+        同一个层叠上下文的背景色以及内部元素，谁在上谁在下，这些都是由层叠级别”来决定的。
+        也就是说，层叠级别是针对同一个层叠上下文而言的。层叠级别与层叠上下文，是两个不同的概念，这个无比要认真理解好。
+    </blockquote>
+    <blockquote style="margin-top: 10px">
+        在同一个层叠上下文中，层叠级别从低到高排列，分别是：
+        <ol>
+            <li>背景和边框（父级）：也就是当前层叠上下文的背景和边框。</li>
+            <li>负 z-index：z-index 为负值的“内部元素”。</li>
+            <li>块盒子：普通文档流下的块盒子（block-level box）。</li>
+            <li>浮动盒子：非定位的浮动元素（也就是排除了position:relative 的浮动盒子）。</li>
+            <li>z-index:0：z-index 为 0 的“内部元素”。</li>
+            <li>正 z-index：z-index 为正值的“内部元素”。</li>
+        </ol>
+    </blockquote>
+    <blockquote style="margin-top: 10px">
+        由此可知：
+        <ol>
+            <li>除了“背景和边框”这一条是当前层叠上下文之外，其他的都是针对当前层叠上下文内部的元素。</li>
+            <li>父元素内部的元素（即后代元素），如果它是一个 z-index 取值不为 auto
+                的定位元素，则这个元素会创建新的层叠上下文。不过这个由内部元素创建的层叠上下文依旧属于父层叠上下文的一部分。也就是说，层叠上下文是可以嵌套的，内部元素所创建的层叠上下文均受制于父元素创建的层叠上下文。
+            </li>
+        </ol>
+        关于块盒子（block-level box）和行内盒子（inline-level box），参考 <a href="bfc-ifc.html">“BFC 和 IFC”</a> 中的内容。
+    </blockquote>
+    <blockquote style="margin-top: 10px">
+        <span class="bold">层叠上下文的特点</span>：
+        <ol>
+            <li>同一个层叠上下文中，我们比较的是“内部元素层叠级别”。层叠级别大的元素显示在上，层叠级别小的元素显示在下。
+            </li>
+            <li>同一个层叠上下文中，如果两个元素的层叠级别相同（即 z-index
+                值相同），则后面的元素堆叠在前面元素的上面，遵循“后来者居上”原则。
+            </li>
+            <li>
+                不同的层叠上下文中，我们比较的是“父级元素层叠级别”。元素显示顺序以“父级层叠上下文”的层叠级别来决定显示的先后顺序，与自身的层叠级别无关。
+            </li>
+        </ol>
+    </blockquote>
+</div>
+
+</body>
+</html>
