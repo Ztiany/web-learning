@@ -16,12 +16,80 @@
         .bold {
             font-weight: bold;
         }
+
+        #demo-1-container {
+            width: 200px;
+            margin-top: 20px;
+            border: 1px dashed red;
+        }
+
+        #demo-1-inbox-1, #demo-1-inbox-2 {
+            height: 50px;
+            background-color: burlywood;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        #demo-1-inbox-1 {
+            margin-bottom: 20px;
+        }
+
+        #demo-1-inbox-2 {
+            margin-top: 20px;
+        }
+
+        .hidden {
+            overflow: hidden;
+        }
+
+        #demo-2-container {
+            width: 200px;
+            margin-top: 20px;
+            border: 1px dashed red;
+        }
+
+        #demo-2-container div {
+            float: left;
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+            background-color: #0C6A9D;
+        }
+
+        #demo-3-container {
+            width: 400px;
+            margin-top: 20px;
+            border: 1px dashed red;
+        }
+
+        #demo-3-image {
+            width: 150px;
+            float: left;
+        }
+
+        #demo-4-sidebar {
+            width: 100px;
+            height: 150px;
+            float: left;
+            background-color: #999999;
+        }
+
+        #demo-4-content {
+            height: 200px;
+            color: white;
+            background-color: darkcyan;
+        }
+
+        #demo-4-content-sub {
+            height: 300px;
+            width: 200px;
+            background-color: white;
+        }
     </style>
 </head>
 
 
 <body>
-
 
 <div class="demo" id="header">
     <h1>BFC 与 IFC</h1>
@@ -31,6 +99,31 @@
         这个盒子可能是<span class="bold">块盒子（block-level box）</span>，也可能是<span class="bold">行内盒子（inline-level
         box）</span>。一个盒子只能是块盒子或者是行内盒子，不能同时是块盒子又是行内盒子。
         其中块盒子参与 BFC（块级格式上下文），行内盒子参与 IFC（行级格式上下文）。
+    </blockquote>
+    <blockquote style="margin-top: 10px">
+        你应该参考的 MDN 链接：
+        <ol>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block" target="_blank">Layout and
+                the containing
+                block</a></li>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flow_layout/Introduction_to_formatting_contexts"
+                   target="_blank">Introduction
+                    to formatting contexts</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context"
+                   target="_blank">Block
+                formatting context</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Inline_formatting_context" target="_blank">Inline
+                formatting
+                context</a></li>
+        </ol>
+    </blockquote>
+    <blockquote style="margin-top: 10px">
+        其他可以参考的链接：
+        <ol>
+            <li><a href="https://segmentfault.com/a/1190000009545742">BFC 与 IFC 概念理解+布局规则+形成方法+用处</a>
+            </li>
+        </ol>
     </blockquote>
 </div>
 
@@ -76,6 +169,7 @@
         </ol>
     </blockquote>
 </div>
+
 <div class="demo">
     <h2>什么是 BFC？</h2>
     <blockquote>
@@ -160,10 +254,125 @@
                     float 元素的区域重叠。
                 </li>
                 <li>BFC 就是页面上的一个隔离的盒子，该盒子内部的子元素不会影响到外面的元素。</li>
-                <li>计算一个 BFC 的高度时，其内部浮动元素的高度也会参与计算。</li>
+                <li>计算一个 BFC 的高度时，其内部浮动元素的高度也会参与计算（即如果一个元素是一个
+                    BFC，则计算该元素高度的时候，内部浮动子元素的高度也得算进去。）。
+                </li>
             </ol>
         </blockquote>
     </div>
+</div>
+
+<div class="demo" id="demo-1">
+    <h2>BFC 应用：创建 BFC 来避免垂直外边距叠加</h2>
+    <div id="demo-1-container">
+        <div id="demo-1-inbox-1">A</div>
+        <div class="hidden">
+            <div id="demo-1-inbox-2">B</div>
+        </div>
+    </div>
+    <blockquote>
+        <p>
+            同一个 BFC 中，相邻的 margin-top 和 margin-bottom 会叠加，为了使得上面 A 和 B 的 margin 不叠加，让 B 处于一个新的
+            BFC 中。
+        </p>
+        <p class="bold">
+            对应第二个结论：同一个 BFC 中，相邻的 margin-top 和 margin-bottom 会叠加”，这里的相邻不是指“相邻的兄弟元素”，而是指相邻的
+            margin-top 和 margin-bottom。
+        </p>
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-2">
+    <h2>BFC 应用：创建 BFC 来清除浮动</h2>
+    <div id="demo-2-container" class="hidden">
+        <div>A</div>
+        <div>B</div>
+    </div>
+    <blockquote>
+        上面使用 “overflow:hidden” 使得父元素变成了一个 BFC，由于 BFC 在计算它自身高度的时候，
+        会把浮动子元素的高度算进去，因此最终父元素的高度等于浮动子元素的高度。此时就相当于清除了浮动。
+        <span class="bold">这对应上面第六个结论。</span>
+        当然我们也可以通过给父元素添加 “display:inline-block”，“float:left” 等来创建新的 BFC 来实现浮动的清除。
+        但是不同的属性会有不同的副作用。比如如果使用 “overflow:scroll” 确实是可以清除浮动，但是却无缘无故地增加了滚动条，
+        这就不是我们想要的效果了。因此如果我们要创建一个 BFC，一定要根据需求来选择最恰当的属性。
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-3">
+    <h2>BFC 应用：创建 BFC 避免文字环绕</h2>
+    <div id="demo-3-container">
+        <img id="demo-3-image" src="../../resource/img/girl01.png" alt="美女"/>
+        <div class="hidden">水陆草木之花，可爱者甚蕃。晋陶渊明独爱菊。自李唐来，世人
+            甚爱牡丹。予独爱莲之出淤泥而不染，濯清涟而不妖，中通外直，不蔓不枝，香远益清，亭亭净植，可远
+            观而不可亵玩焉。予谓菊，花之隐逸者也；牡丹，花之富贵者也；莲，花之君子者也。噫！菊之爱，陶后
+            鲜有闻；莲之爱，同予者何人？牡丹之爱，宜乎众矣。
+        </div>
+    </div>
+    <blockquote>
+        根据层叠上下文的知识我们知道：一个元素浮动之后，它的层叠级别（stacking level）比普通文档流的块级盒子的层叠级别要高。
+        此时浮动元素会“浮”到上面去，脱离文档流。根据<span class="bold">第四点结论</span>：在一个 BFC 内部，如果存在内部元素是一个新的
+        BFC，并且存在内部元素是浮动的元素，则该新的 BFC 的区域不会与 float 元素的区域重叠。于是我们为放置文字的 div 设置
+        overflow:hidden 属性后，
+        该 div 就形成了一个新的 BFC，就不会与浮动的 img 区域重叠了。
+        <p style="margin-top: 15px;color: red">
+            <span class="bold">
+                注意：如果放置文字的 div 没有形成新的 BFC，就会与浮动的 img 的区域发生重叠。但是我们看到的文字却是环绕着
+                图片的，这是因为文字
+            </span>
+        </p>
+
+        <p style="margin-top: 15px;color: black">
+            疑问：当一个 div 内部有一个 img 和另一个 div，设置内部的 img 为浮动，此时内部的 div 的区域会与 img 的区域发送重叠，而内部
+            div 内的文字却会环绕浮动的 img，这是为什么？为什么文字不会与浮动的 img 区域一起重叠？请详细地为我解答，因为我是个新手。
+        </p>
+        <div class="bold" style="margin-top: 5px">
+            答：这是因为浮动元素对于块级元素和内联元素（比如文字）的影响是不同的。浮动元素会影响到它后面的块级元素和内联元素的布局，但这两者的表现形式有所不同。
+
+            <ol>
+                <li>
+                    对于块级元素，浮动元素不会影响到其盒子模型，也就是说浮动元素不会推开后面的块级元素，会导致块级元素与浮动元素重叠。但是，如果块级元素有背景色或背景图片，你会看到浮动元素浮在背景之上。
+                </li>
+                <li>
+                    对于内联元素（包含文字），浮动元素会影响其布局，内联元素的内容会围绕浮动元素，避免与浮动元素重叠，看上去就像文字在环绕浮动图片。
+                </li>
+            </ol>
+            <p>
+                这种不同的表现形式是浮动布局的一部分，也是为了实现更复杂的布局效果。
+            </p>
+            <p>
+                这就是为什么你的内部 div 区域会与 img 发生重叠，而内部的文字会环绕浮动的 img。如果你想让块级元素（比如
+                div）也避免与浮动元素重叠，你可以使用“清除浮动（clear）”的方法，或者让这个块级元素也变成一个新的
+                BFC（块级格式化上下文）。创建新的 BFC 的一个方法是设置 overflow 属性为除 visible 以外的任何值。
+            </p>
+        </div>
+    </blockquote>
+</div>
+
+<div class="demo" id="demo-4" style="width: 80%;">
+    <h2>BFC 应用：使用 BFC 创建自适应两列布局</h2>
+    <div id="demo-4-container">
+        <div id="demo-4-sidebar"></div>
+        <div id="demo-4-content" class="hidden">
+            水陆草木之花，可爱者甚蕃。晋陶渊明独爱菊。自李唐来，世人
+            甚爱牡丹。予独爱莲之出淤泥而不染，濯清涟而不妖，中通外直，不蔓不枝，香远益清，亭亭净植，可远
+            观而不可亵玩焉。予谓菊，花之隐逸者也；牡丹，花之富贵者也；莲，花之君子者也。噫！菊之爱，陶后
+            鲜有闻；莲之爱，同予者何人？牡丹之爱，宜乎众矣。
+            <div id="demo-4-content-sub">
+
+            </div>
+        </div>
+
+    </div>
+    <blockquote>
+        <p>
+            根据<span class="bold">结论的第三点</span>，“在一个 BFC 中，内部每一个元素的左外边界会紧贴着包含盒子的左边，即使存在浮动也是如此。”
+            。因此在这个例子中，我们为 content 元素添加 “overflow:hidden”，此时 content 元素变成了一个新的
+            BFC。就可以防止出现紧贴的现象。
+        </p>
+        <p style="margin-top: 20px;" class="bold">
+            改变浏览器的宽度，发现布局的左边始终不变，右边能自适应。
+        </p>
+    </blockquote>
 </div>
 
 </body>
