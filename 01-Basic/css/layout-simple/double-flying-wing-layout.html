@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>布局：双飞翼</title>
+    <style>
+        body {
+            min-width: 550px;
+        }
+
+        .col {
+            float: left;
+        }
+
+        #main {
+            width: 100%;
+            height: 400px;
+            background-color: #ccc;
+        }
+
+        #main-wrap {
+            margin: 0 190px 0 190px;
+        }
+
+        #left {
+            width: 190px;
+            height: 400px;
+            margin-left: -100%;
+            background-color: #0000FF;
+        }
+
+        #right {
+            width: 190px;
+            height: 400px;
+            margin-left: -190px;
+            background-color: #FF0000;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <h1>双飞翼布局</h1>
+    <p>
+        与圣杯布局相比，双飞翼 HTML 中为 main 添加了一个子元素 main-wrap，这个小小的改动是为了之后处理 main 中内容被遮盖的问题，这也是两者实现方式最大的不同点。
+    </p>
+</div>
+
+<div id="container">
+    <div id="main" class="col">
+        <div id="main-wrap"></div>
+    </div>
+    <div id="left" class="col"></div>
+    <div id="right" class="col"></div>
+</div>
+
+</body>
+</html>
