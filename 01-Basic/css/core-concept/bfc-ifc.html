@@ -211,17 +211,17 @@
                 会生成块盒子（block-level box），然后块盒子会参与 BFC。
                 其实从这句话我们已经得到明确答案了：block、table、list-item 等类型的元素的是参与 BFC，而不是创建 BFC。
             </p>
-            <div style="margin-top: 20px;color: red">
-                <p>
+            <div style="margin-top: 15px;color: red">
+                <p style="margin-top: 10px">
                     实际上，块级元素（block）和表格元素（table）本身并不会创建新的 BFC（Block Formatting Context）。BFC 是由一些特定的
                     CSS 属性创建的，如 float（除了 none），position（除了 static 和 relative），display（如 inline-block,
                     table-cell, table-caption, flex, grid），或者 overflow（除了 visible）等。
                 </p>
-                <p>
+                <p style="margin-top: 10px">
                     也就是说，虽然块级元素（block）和表格元素（table）在布局中占据了块级的空间，但是它们并不会自动创建新的
                     BFC。只有当它们或它们的子元素应用了上述的某些 CSS 属性时，才会创建新的 BFC。
                 </p>
-                <p>
+                <p style="margin-top: 10px">
                     这种设计有其特定的原因。BFC 有一些特殊的布局规则，如 BFC 中的元素会在垂直方向上一个接一个地放置，BFC
                     可以阻止元素被浮动元素覆盖等。这些规则在某些情况下是非常有用的，但在其他情况下可能会导致不必要的复杂性。因此，只有在需要这些特性时，才会通过特定的
                     CSS 属性来创建 BFC。
@@ -328,7 +328,7 @@
         <div class="bold" style="margin-top: 5px">
             答：这是因为浮动元素对于块级元素和内联元素（比如文字）的影响是不同的。浮动元素会影响到它后面的块级元素和内联元素的布局，但这两者的表现形式有所不同。
 
-            <ol>
+            <ol >
                 <li>
                     对于块级元素，浮动元素不会影响到其盒子模型，也就是说浮动元素不会推开后面的块级元素，会导致块级元素与浮动元素重叠。但是，如果块级元素有背景色或背景图片，你会看到浮动元素浮在背景之上。
                 </li>
