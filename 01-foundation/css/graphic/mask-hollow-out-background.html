@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mask：镂空背景</title>
+    <style>
+        .mask-bg {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .mask-bg::after {
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            top: -20px;
+            bottom: -20px;
+            background: url(../../resource/img/mountain.jpg) no-repeat center/cover;
+            filter: blur(10px);
+            content: "";
+        }
+
+        .mask-bg div {
+            position: relative;
+            z-index: 9;
+            width: 600px;
+            height: 300px;
+            background: url(../../resource/img/snow.jpg) left center/150% auto;
+            mask: url(../../resource/img/logo.png) center/cover;
+            -webkit-mask: url(../../resource/img/logo.png) center;
+            -webkit-mask-size: cover;
+            animation: move 10s infinite;
+        }
+
+        @keyframes move {
+            0% {
+                background-position-x: 0;
+            }
+            50% {
+                background-position-x: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="mask-bg">
+    <div></div>
+</div>
+</body>
+
+</html>
