@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue: Todo APP</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            background: antiquewhite;
+            display: flex;
+            place-content: center;
+            align-content: center;
+            flex-wrap: wrap;
+        }
+
+        #app {
+            background: aliceblue;
+            width: max-content;
+        }
+
+        .done {
+            color: rgb(128, 128, 128);
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app">
+    <h2>{{ title }}</h2>
+    <input type="text" v-model="title" @keydown.enter="addTodo">
+    <ul v-if="todos.length">
+        <li v-for="todo in todos">
+            <input type="checkbox" v-model="todo.done">
+            <span :class="{done:todo.done}">{{ todo.title }}</span>
+        </li>
+    </ul>
+    <p v-else>
+        暂无待办事项
+    </p>
+    <div>
+        <p>
+            统计：{{ active }}/{{ all }} /
+            全选<input type="checkbox" v-model="allDone">
+            <span v-if="active < all"> / </span>
+            <button v-if="active < all" @click="clearDone">清理</button>
+        </p>
+    </div>
+</div>
+
+<!-- 引入 Vue -->
+<script src="https://unpkg.com/vue@next"></script>
+
+<!-- APP 的业务逻辑 -->
+<script>
+    // 定义 APP
+    const App = {
+        //数据
+        data() {
+            return {
+                title: "",
+                todos: [
+                    {title: '吃饭', done: false},
+                    {title: '睡觉', done: true}, //默认选中
+                    {title: '学习 Vue', done: true}
+                ]
+            }
+        },
+        //方法
+        methods: {
+            addTodo() {
+                this.todos.push({
+                    "title": this.title,
+                    "done": false
+                })
+                this.title = ""
+            },
+            clearDone() {
+                return this.todos = this.todos.filter((todo) => !todo.done)
+            }
+        },
+        //计算属性
+        computed: {
+            active() {
+                return this.todos.filter((todo) => !todo.done).length
+            },
+            all() {
+                return this.todos.length
+            },
+            allDone: {
+                get: function () {
+                    return this.active <= 0;
+                },
+                set: function (val) {
+                    this.todos.forEach((todo) => {
+                        todo.done = val;
+                    })
+                }
+            }
+        }
+    }
+
+    //创建 APP并挂载到元素上。
+    Vue.createApp(App).mount('#app')
+</script>
+</body>
+
+</html>
