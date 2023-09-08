@@ -1,6 +1,8 @@
 <script setup>
 /* ============================== 累加器  ============================== */
 import {computed, ref} from 'vue'
+import useStorage from "../utils/storage.js";
+import {useFullscreen} from "@vueuse/core";
 
 let counter = ref(0);
 
@@ -8,12 +10,15 @@ function addCount() {
   counter.value++;
 }
 
+/* ============================== FullScreen  ============================== */
+let {isFullscreen, enter, exit, toggle} = useFullscreen();
+
 /* ============================== To-do List  ============================== */
 /* 用一个函数封装 To-do List 的所有的逻辑。 */
 function useTodos() {
 
   let title = ref("");
-  let todos = ref([{title: "学习Vue", done: false}]);
+  let todos = useStorage("todo_data--", []);
 
   function addTodoItem() {
     todos.value.push({title: title.value, done: false});
@@ -46,7 +51,13 @@ let {title, todos, addTodoItem, clearDone, active, all, allDone} = useTodos();
 
   <!-- ============================== 累加器  ============================== -->
   <div>
-    <h1 @click="addCount">Counter: {{ counter }}</h1>
+    <h2 @click="addCount">Counter: {{ counter }}</h2>
+  </div>
+
+  <div>
+    <button @click="enter">全屏</button>
+    |
+    <button @click="exit">退出全屏</button>
   </div>
 
   <!--  ============================== To-do List  ============================== -->
@@ -76,6 +87,6 @@ h1 {
 
 .done {
   text-decoration: line-through;
-  color: gray;
+  color: rgb(128, 128, 128);
 }
 </style>
