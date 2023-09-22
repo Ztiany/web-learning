@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet/less" type="text/css" href="./less.main.less"/>
+    <title>Less Demo</title>
+</head>
+
+
+<body>
+
+<div id="header" class="demo">
+    <h1>Less 练习</h1>
+    <div>
+        <p>
+            Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。 Less 可以运行在
+            Node 或浏览器端。
+        </p>
+    </div>
+</div>
+
+
+<div id="demo1" class="demo">
+    <h2>实例 1：文字超出省略</h2>
+    <div class="single-line-long-text" style="margin-top: 5px">
+        Less 中使用 @ 符号申明变量，比如 @color: red。比方说我现在写一个电商项目，我需要设置项目中主色、辅助色等。
+
+        算数运算符 +、-、*、/ 可以对任何数字、颜色或者变量进行运算，在 Less
+        中在加减之前会进行单位的换算。计算的结果以最左侧才作数的单位类型为准。如果单位无效或者失去意义，则单位会被忽略。
+    </div>
+
+    <div class="three-line-long-text" style="margin-top: 5px">
+        Less 中使用 @ 符号申明变量，比如 @color: red。比方说我现在写一个电商项目，我需要设置项目中主色、辅助色等。
+
+        算数运算符 +、-、*、/ 可以对任何数字、颜色或者变量进行运算，在 Less
+        中在加减之前会进行单位的换算。计算的结果以最左侧才作数的单位类型为准。如果单位无效或者失去意义，则单位会被忽略。
+    </div>
+</div>
+
+
+<div id="demo2" class="demo">
+    <h2>实例 2：三角形</h2>
+    <div>
+        <div class="triangle-left"></div>
+        <div class="triangle-right"></div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/less.js/3.11.1/less.min.js"></script>
+</body>
+</html>

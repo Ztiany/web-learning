@@ -1,0 +1,97 @@
+/* 定义变量 */
+@color_main: antiquewhite;
+@color_border: azure;
+
+/*
+Less 的混合有三种情况：
+
+    - 不带参数；
+    - 带参数，没有默认值；
+    - 带参数，且有设置默认值；
+
+调用的时候也存在区别：
+
+    - 不带参数：调用时可以不加括号，直接使用；
+    - 带参数：调用时要加括号，括号里必须要传值，不然编译会报错；
+    - 带参数且有默认值：调用时要加括号，参数可传可不穿；
+ */
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+
+// 多行文字超出显示省略号
+.ellipsisMultiple(@num: 1) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: @num;
+}
+
+// 单行文字超出显示省略号
+.ellipsisSingle {
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+  在开发页面时，时常会有需要画三角形的情况，上下左右四个方位的三角形，若是一直复制重复的代码去修改，显得不是那么优雅，这时候我们可以用到匹配模式。 匹配模式下无论同名的哪一个混合被匹配到，都会先执行通用匹配模式的代码， @_ 表示通用的匹配模式，具体代码如下：
+ */
+.triangle(@_, @width, @color) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.triangle(Bottom, @width, @color) {
+  border-width: @width;
+  border-color: @color transparent transparent transparent;
+}
+
+.triangle(Left, @width, @color) {
+  border-width: @width;
+  border-color: transparent @color transparent transparent;
+}
+
+.triangle(Top, @width, @color) {
+  border-width: @width;
+  border-color: transparent transparent @color transparent;
+}
+
+.triangle(Right, @width, @color) {
+  border-width: @width;
+  border-color: transparent transparent transparent @color;
+}
+
+.demo {
+  .size(600px, max-content);
+  background: @color_main;
+  padding: 10px;
+  margin: 10px;
+  border: @color_border 1px solid;
+  border-radius: 5px;
+}
+
+#demo1 {
+  .single-line-long-text {
+    .ellipsisSingle;
+  }
+
+  .three-line-long-text {
+    .ellipsisMultiple(2);
+  }
+}
+
+#demo2 {
+  .triangle-left {
+    .triangle(Left, 10px, red);
+  }
+
+  .triangle-right {
+    .triangle(Right, 10px, red);
+  }
+}
