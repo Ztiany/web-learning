@@ -26,7 +26,7 @@ service.interceptors.response.use(
     response => {
         const res = response.data
         if (response.status !== 200) {
-            return Promise.reject(new Error(res.success || 'Error'))
+            return Promise.reject(new Error(res.success || 'Network Error'))
         } else {
             if (res.code == 200) {
                 return res.result || res.data
