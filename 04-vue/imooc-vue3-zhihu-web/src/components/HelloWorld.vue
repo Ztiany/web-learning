@@ -33,6 +33,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+HTMLElement
+
 export default defineComponent({
   name: 'HelloWorld',
   props: {
