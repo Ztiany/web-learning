@@ -1,4 +1,4 @@
-# [Vue3+Vite+Vant-UI 开发双端招聘APP](https://coding.imooc.com/class/chapter/620.html) 学习代码
+# [Vue3+Vite+Vant-UI 开发双端招聘 APP](https://coding.imooc.com/class/chapter/620.html) 学习代码
 
 ##  api接口文档地址
 
