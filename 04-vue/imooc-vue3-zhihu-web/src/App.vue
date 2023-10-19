@@ -2,15 +2,32 @@
   <!-- 参考 Bootstrap 栅格系统：https://v5.getbootstrap.com/docs/5.0/layout/grid/ -->
   <div class="container">
     <GlobalHeader :user="testUser"/>
+
+    <ValidateForm @form-submit="onSubmit">
+      <div class="mb-3">
+        <label class="form-label">邮箱地址</label>
+        <validate-input :rules="emailRules" v-model="email"></validate-input>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">用户名</label>
+        <validate-input :rules="nameRules"></validate-input>
+      </div>
+      <template #submit>
+        <span class="btn btn-danger">Submit</span>
+      </template>
+    </ValidateForm>
+    <div>{{ email }}</div>
     <ColumnList :list="testData"/>
   </div>
 </template>
 
 <script lang="ts">
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import GlobalHeader, { UserProps } from './components/GlobalHeader.vue'
 import ColumnList, { ColumnProps } from './components/ColumnList.vue'
+import ValidateInput, { RulesProp } from './components/ValidateInput.vue'
+import ValidateForm from './components/ValidateForm.vue'
 
 const testData: ColumnProps[] = [
   {
@@ -39,21 +56,51 @@ const testData: ColumnProps[] = [
   }
 ]
 
+const emailRules: RulesProp = [
+  {
+    type: 'required',
+    message: '电子邮箱地址不能为空'
+  },
+  {
+    type: 'email',
+    message: '请输入正确的电子邮箱格式'
+  }
+]
+
+const nameRules: RulesProp = [
+  {
+    type: 'required',
+    message: '电子邮箱地址不能为空'
+  }
+]
+
+const onSubmit = (result: boolean) => {
+  console.log('OnSubmit:', result)
+}
+
 const testUser: UserProps = {
   isLogin: true,
   name: 'Alien'
 }
 
+const email = ref('')
+
 export default defineComponent({
   name: 'App',
   components: {
     GlobalHeader,
-    ColumnList
+    ColumnList,
+    ValidateForm,
+    ValidateInput
   },
   setup () {
     return {
       testData,
-      testUser
+      testUser,
+      emailRules,
+      nameRules,
+      onSubmit,
+      email
     }
   }
 })
