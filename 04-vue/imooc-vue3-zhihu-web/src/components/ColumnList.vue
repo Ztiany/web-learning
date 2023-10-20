@@ -48,7 +48,7 @@ export default defineComponent({
           <img :src="item.avatar" :alt="item.title" class="rounded-circle border border-light w-25 my-3">
           <h5 class="card-title">{{ item.title }}</h5>
           <p class="card-text  text-start">{{ item.description }}</p>
-          <a href="#" class="btn btn-outline-primary">进入专栏</a>
+          <router-link :to="`/column/${item.id}`" class="btn btn-outline-primary">进入专栏</router-link>
         </div>
       </div>
     </div>
