@@ -51,6 +51,7 @@ console.log("========== 柯里化 ==========")
 const add1 = function (a, b, c) {
     return a + b + c;
 };
+console.log("add1(1, 2, 3): ", add1(1, 2, 3))
 
 // 柯里化，这里每次传入参数都会返回一个新的函数，这样一直执行到最后一次返回 `a+b+c`
 // 的值。但是这种实现还是有问题的，这里只有三个参数，如果哪天产品经理告诉我们需要改成
@@ -62,6 +63,7 @@ const add2 = function (a) {
         };
     };
 };
+console.log("add2(1)(2)(3): ", add2(1)(2)(3))
 
 const add3 = function () {
     const _args = [];
@@ -82,9 +84,9 @@ const add3 = function () {
 };
 
 const sum3 = add3();// 创建一个闭包环境，保存了 _args 变量。
-console.log(sum3(1)(2)(3)()); // 6
+console.log("sum3(1)(2)(3)(): ", sum3(1)(2)(3)()); // 6
 
-// 通用柯里化函数
+// 上面的 curry 实现写死了内部的 add 逻辑，下面使用 apply 实现通用的柯里化函数
 const curry1 = function (fn) {
     const _args = [];
     return function () {
@@ -108,7 +110,7 @@ const addFunction = function () {
 };
 
 const add4 = curry1(addFunction);
-console.log(add4(1)(2)(3)()); // 6
+console.log("add4(1)(2)(3)(): ", add4(1)(2)(3)()); // 6
 
 // 上面的实现每次都要以一个丑陋的括号结尾，我们可以通过重写 `toString` 和 `valueOf` 方法来解决这个问题。
 const curry2 = function (fn) {
@@ -138,11 +140,17 @@ const add5 = function () {
 };
 
 const adder = curry2(add5);
-console.log(adder(1)(2)(3));
+console.log("adder(1)(2)(3) + 1 = ", adder(1)(2)(3) + 1);
 
+/*
+==========================================================
+                        柯里化-预加载
+==========================================================
 
-// 在很多场景下，我们需要的函数参数很可能有一部分一样，这个时候再重复写就比较浪费了，
-// 我们提前加载好一部分参数，再传入剩下的参数，这里主要是利用了闭包的特性，通过闭包可以保持着原有的作用域。
+在很多场景下，我们需要的函数参数很可能有一部分一样，这个时候再重复写就比较浪费了，
+我们提前加载好一部分参数，再传入剩下的参数，这里主要是利用了闭包的特性，通过闭包可以保持着原有的作用域。
+*/
+console.log("========== 柯里化-预加载 ==========")
 const match = curry2(function (what, str) {
     return str.match(what);
 });
@@ -153,3 +161,51 @@ console.log(match(/\s+/g)("hello world"));
 const hasSpaces = match(/\s+/g);
 hasSpaces("hello world");
 hasSpaces("space-less");
+
+/*
+==========================================================
+                        动态创建函数
+==========================================================
+
+Javascript 允许在定义语句中重新定义函数，这样就可以动态创建函数。
+*/
+console.log("========== 动态创建函数 ==========")
+let addEvent = function (el, sType, fn, capture) {
+    if (window.addEventListener) {
+        addEvent = function (el, sType, fn, capture) {
+            el.addEventListener(
+                sType,
+                function (e) {
+                    fn.call(el, e);
+                },
+                capture
+            );
+        };
+    } else if (window.attachEvent) {
+        addEvent = function (el, sType, fn, capture) {
+            el.attachEvent("on" + sType, function (e) {
+                fn.call(el, e);
+            });
+        };
+    }
+};
+console.log("addEvent: ", addEvent)
+
+/*
+==========================================================
+                        反柯里化
+==========================================================
+
+反柯里化恰恰和柯里化相反，是为了扩大适用范围，创建一个应用范围更广的函数。使本来只有特定对象才适用的方法，扩展到更多的对象。
+*/
+console.log("========== 反柯里化 ==========")
+const unCurry = function (fn) {
+    return function (target, ...rest) {
+        return fn.apply(target, rest);
+    };
+};
+
+const obj = {};
+const push = unCurry(Array.prototype.push);
+push(obj /* target */, 1, 2, 3);
+console.log(obj); // { 0: 1, 1: 2, 2: 3}
