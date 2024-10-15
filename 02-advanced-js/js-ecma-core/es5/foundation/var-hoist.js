@@ -1,5 +1,11 @@
 /*
-var 和 function 声明提前的问题，具体参考 <https://www.cnblogs.com/weiyalin/p/9447637.html>。
+变量提示：JavaScript 引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。
+这造成的结果，就是所有的变量的声明语句，都会被提升到代码的头部，这就叫做变量提升（hoisting）。
+
+具体参考：
+
+    <https://www.cnblogs.com/weiyalin/p/9447637.html>
+    <https://wangdoc.com/javascript/basic/grammar#%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87>
 
 在 JavaScript 存在着这样一种预处理机制，即浏览器在解析 JS 代码时会将 var 声明的变量和 function 声明的函数提升到当前作用域的顶部。
 但是解析 JS 代码时对 var 和 function 关键字声明的对象的处理是不一样的：
