@@ -53,12 +53,20 @@ console.log("========== 获取变量的类型 ==========")
 console.log("type 1:", typeof 1) // number
 console.log("type '1':", typeof '1') // string
 console.log("type true:", typeof true) // boolean
-console.log("type undefined:", typeof undefined) // undefined
-console.log("type null:", typeof null) // object
 console.log("type {}: ", typeof {}) // object
 console.log("type []: ", typeof []) // object，在 JavaScript 内部，数组本质上只是一种特殊的对象。使用 instanceof 运算符可以区分数组和对象。
 console.log("type function: ", typeof (function () {
 })) // function
+
+// object，null 的类型是 object，这是由于历史原因造成的。1995 年的 JavaScript 语言第一版，
+// 只设计了五种数据类型（对象、整数、浮点数、字符串和布尔值），没考虑 null，只把它当作 object
+// 的一种特殊值。后来 null 独立出来，作为一种单独的数据类型，为了兼容以前的代码，typeof null
+// 返回 object 就没法改变了。
+console.log("type null:", typeof null)
+console.log("null:", null)
+// undefined
+console.log("type  undefined:", undefined)
+console.log("undefined:", typeof undefined)
 
 // 对于未定义过的变量，直接使用会抛出异常
 try {

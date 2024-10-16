@@ -1,7 +1,6 @@
 /*
  以下内容来自：《廖雪峰的 JavaScript 教程》，地址：https://www.liaoxuefeng.com/wiki/1022910821149312/1023022126220448。
 
-
  面向对象：在 JavaScript 中，不区分类和实例的概念，而是通过原型（prototype）来实现面向对象编程。
 
  原型是指当我们想要创建 xm 这个具体的学生时，我们并没有一个 Student 类型可用。但是我们有一个 Student
