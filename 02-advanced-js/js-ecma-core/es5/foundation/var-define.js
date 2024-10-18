@@ -23,4 +23,4 @@ try {
 // 使用 var 重复声明变量是无效的，d 还是 1，但是不会报错。而使用 let 重复声明变量会报错。
 var d = 1;
 var d = 2; // 无效
-console.log("d =", d);
+console.log("d =", d); // 1
