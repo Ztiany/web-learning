@@ -1,7 +1,7 @@
 /*
 参考：
 
-    - <https://wangdoc.com/javascript/stdlib/this>
+    - <https://wangdoc.com/javascript/oop/this>
 
 ==========================================================
                                     this 关键字
@@ -15,6 +15,8 @@ this 可以用在构造函数之中，表示实例对象。除此之外，this �
 
 简单说，this 就是属性或方法“当前”所在的对象。`this.property` 就代表 property
 属性当前所在的对象。
+
+总结：this 就是当前对象的意思。Java 和 Kotlin 里是这样，JavaScript 也是。
 */
 console.log("========== this 关键字 ==========");
 
@@ -26,15 +28,39 @@ const person1 = {
     }
 };
 
-// 由于对象的属性可以赋给另一个对象，所以属性所在的当前对象是可变的，即 this 的指向是可变的。
+// 由于对象的属性可以赋给另一个对象，所以属性所在的当前对象是可变的，
+// 即 this 的指向是可变的。
 const person2 = {
     name: '李四'
 };
 
-// 此时 person2.describe 中的 this 指向 person2 对象。
-// 总结：只要函数被赋给另一个变量，this 的指向就会变。
+/* 此时 person2.describe 中的 this 指向 person2 对象。
+    总结：只要函数被赋给另一个变量，this 的指向就会变。
+               函数里的 this 一般指向调用函数的对象。
+ */
 person2.describe = person1.describe;
 console.log("person2.describe()", person2.describe());
+
+/*
+    由于 JavaScript 的 this 是相当灵活的，所以 JavaScript 并
+    不支持隐式的 this 。不管你是在对象还是类里，想要使用任
+    何内部属性，必须手动把 this 给写出来。如果你省略掉 this，
+
+                        function showUser() {
+                            console.log('姓名：' + user);
+                        }
+
+    语法上不会被划为错误，但含义变了，user 会尝试从当前作用域
+    里获取 user 变量，而不是当前对象的 user 属性。
+ */
+const object = {
+    user: "张三",
+    showUser: function () {
+        // 没有 this.user，这里的 user 会尝试从当前作用域里获取 user
+        // 变量，而不是当前对象的 user 属性。
+        console.log('姓名：' + user);
+    }
+}
 
 /*
 参考代码：

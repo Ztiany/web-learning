@@ -1,7 +1,7 @@
 /*
 参考：
 
-    - <https://wangdoc.com/javascript/stdlib/new>
+    - <https://wangdoc.com/javascript/oop/new>
 
 ==========================================================
                         对象是什么？
