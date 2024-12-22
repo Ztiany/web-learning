@@ -136,7 +136,6 @@
 
 
 <body>
-
 <!--
 页面布局：总-分结构：
 
@@ -144,9 +143,37 @@
     - sidebar
 -->
 
-<!--主内容区-->
+<!-- 主内容区 -->
 <div id="main">
-    <!--文章-->
+    <!--
+    section、article、footer、header 是用来组织网页内容的语义化标签，它们帮助定义网页的结构和内容区域，
+    使得网页的结构更加清晰，同时也有助于搜索引擎优化（SEO）和辅助技术（如屏幕阅读器）更好地
+    理解网页内容。
+
+    <section> 标签：
+        用于定义文档中的一个区段，通常包含一个标题（<h1>-<h6>）。
+        <section> 元素用于组织相似的内容，比如章节、页签、文档中的一个部分等。
+        它可以包含 <article> 元素，也可以包含其他 <section> 元素，或者任何其他流内容（flow content）。
+         <section> 元素通常用于将页面分成多个逻辑部分，每个部分都有自己的标题。
+
+    <article> 标签：
+            用于定义一个独立的、完整的内容区块，它可以是新闻文章、博客帖子、论坛帖子等。
+            <article> 元素通常用于包含能够独立于页面其余部分存在的内容。
+            它可以包含标题（<h1>-<h6>）、段落（<p>）、图片、视频等。
+            一个页面可以包含多个 <article> 元素，每个代表不同的独立内容。
+            <article> 可以包含多个 <section> 元素，每个 <section> 表示文章中的
+            一个独立部分，比如引言、正文、结论等。
+
+    <header> 用于定义头部区域，通常包含导航链接、标题等。
+
+    <footer> 标签：
+            用于定义一个页面或一个页面区段的页脚。
+            <footer> 元素通常包含版权信息、作者信息、相关文档链接等。
+            它可以出现在 <article>、<section> 或整个 <body> 的底部。
+            一个页面可以有多个 <footer> 元素，每个对应不同的区段。
+    -->
+
+    <!-- 文章 -->
     <section>
         <article>
             <h2><a href="articles/01.html">我的第一篇文章</a></h2>
@@ -156,6 +183,7 @@
             <div class="pub-time">发布时间：<em>2018-12-08</em></div>
             <div class="read-more"><a href="articles/01.html">阅读全文</a></div>
         </article>
+
         <article>
             <h2><a href="articles/01.html">我的第二篇文章</a></h2>
             <p>
@@ -164,6 +192,7 @@
             <div class="pub-time">发布时间：<em>2018-12-08</em></div>
             <div class="read-more"><a href="articles/01.html">阅读全文</a></div>
         </article>
+
         <article>
             <h2><a href="articles/01.html">我的第三篇文章</a></h2>
             <p>
@@ -174,16 +203,16 @@
         </article>
     </section>
 
-    <!--页脚-->
+    <!-- 页脚 -->
     <footer>
         &copy;2018 - 我的博客 - 君喻学堂
     </footer>
 </div>
 
-<!--侧边栏-->
+<!-- 侧边栏 -->
 <div id="sidebar">
     <div id="profile">
-        <!-- 当一个非块级元素和其他块级元素并列时，我们通常给这个非块级元素外层套一个块级元素。 -->
+        <!-- 当一个非块级元素和其他块级元素并列时，我们通常给这个非块级元素外层套一个块级元素。 -->
         <div id="avatar">
             <a href="#"><img src="static/image/avatar.png" alt="Avatar"></a>
         </div>
