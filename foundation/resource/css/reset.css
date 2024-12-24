@@ -50,8 +50,8 @@ blockquote, q {
 }
 
 /*
-blockquote 是 HTML 中的块引用元素。
-content 属性主要用于设置元素的生成内容 (Generated Content)
+ blockquote 是 HTML 中的块引用元素。
+ content 属性主要用于设置元素的生成内容 (Generated Content)
 */
 blockquote:before, blockquote:after,
 q:before, q:after {

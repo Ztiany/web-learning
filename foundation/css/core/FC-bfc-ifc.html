@@ -121,7 +121,8 @@
     <blockquote style="margin-top: 10px">
         其他可以参考的链接：
         <ol>
-            <li><a href="https://segmentfault.com/a/1190000009545742">BFC 与 IFC 概念理解+布局规则+形成方法+用处</a>
+            <li>
+                <a href="https://segmentfault.com/a/1190000009545742">BFC 与 IFC 概念理解 + 布局规则 + 形成方法 + 用处</a>
             </li>
         </ol>
     </blockquote>
@@ -193,7 +194,7 @@
                 <li>
                     overflow 属性除了 visible 以外的值，也就是 “overflow:auto”，“overflow:hidden” 和 “overflow:scroll”。
                 </li>
-                <li>元素类型（即 display 属性）为 inline-block、table-caption、table-cell。</li>
+                <li>元素类型（即 display 属性）为 inline-block、table-caption、table-cell 等。</li>
             </ol>
             <p style="margin-top: 10px"> 虽然这些属性都可以创建 BFC，但是也会产生一些效果。 </p>
             <ol>
@@ -317,12 +318,12 @@
         <p style="margin-top: 15px;color: red">
             <span class="bold">
                 注意：如果放置文字的 div 没有形成新的 BFC，就会与浮动的 img 的区域发生重叠。但是我们看到的文字却是环绕着
-                图片的，这是因为文字
+                图片的，这是因为文字具有“行内块”（inline-block）的特性。行内块元素会环绕浮动元素，避免与浮动元素重叠。
             </span>
         </p>
 
         <p style="margin-top: 15px;color: black">
-            疑问：当一个 div 内部有一个 img 和另一个 div，设置内部的 img 为浮动，此时内部的 div 的区域会与 img 的区域发送重叠，而内部
+            疑问：当一个 div 内部有一个 img 和另一个 div，设置内部的 img 为浮动，此时内部的 div 的区域会与 img 的区域发生重叠，而内部
             div 内的文字却会环绕浮动的 img，这是为什么？为什么文字不会与浮动的 img 区域一起重叠？请详细地为我解答，因为我是个新手。
         </p>
         <div class="bold" style="margin-top: 5px">
@@ -361,7 +362,7 @@
 
             </div>
         </div>
-
+        <div style="background: green; height: 100px"></div>
     </div>
     <blockquote>
         <p>

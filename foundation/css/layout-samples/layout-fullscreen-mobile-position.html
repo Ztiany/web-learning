@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全屏布局（absolute 方案）</title>
+    <meta
+            name="viewport"
+            content="width=device-width,height=device-height, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <style>
+        /*
+        <div id="fullscreen"> 元素设置了 height: 100%，但是没有给其父元素设置明确的高度。
+        height: 100% 表示该元素的高度应该是其父元素的 100%，而如果其父元素没有明确的高度，那
+        么 height: 100% 就无法计算出具体的高度值，导致 #fullscreen 的高度为 0，从而影响了
+        布局，导致内容没有显示。
+
+        这里 #fullscreen 元素的 height: 100% 依赖于它的父元素（即 <body> 和 <html>）的高
+        度。如果没有明确设置这些父元素的高度，浏览器就无法计算出 #fullscreen 的实际高度了，结果
+        #fullscreen 的高度为 0，因此看不到任何内容。
+
+        解决方案就是给 <html> 和 <body> 设置 height: 100%。
+        */
+        html, body {
+            height: 100%;
+            margin: 0; /* 去除默认的 margin */
+        }
+
+        #root-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            .content {
+                color: white;
+            }
+
+            .center {
+                text-align: center;
+                line-height: 50px;
+            }
+        }
+
+        #title-bar, #main-container, #navigation-bar {
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+
+        #title-bar {
+            top: 0;
+            height: 50px;
+            background-color: #f66;
+        }
+
+        #navigation-bar {
+            bottom: 0;
+            height: 50px;
+            background-color: #66f;
+        }
+
+        #main-container {
+            top: 50px;
+            bottom: 50px;
+            background-color: #3c9;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root-container">
+    <header id="title-bar" class="content center">我是头部</header>
+    <main id="main-container">
+        <div class="content">
+            <p>
+                经典的全屏布局由顶部、底部和主体三部分组成，其特性为三部分左右满屏拉伸、顶部底部高度固定和主体高度自适应。
+                该布局很常见，也是很多 Web 应用主体的主流布局。通常使用 `header`、`footer` 和 `main` 三个标签语义
+                化排版，`main` 内还可加入 `aside` 侧栏或其他语义化标签。
+            </p>
+            <p>
+                这里使用的是绝对布局方案，移动端基本都是以该布局为主，不信打开任意一款 App 瞧瞧。实现起来较简单，基于其左右满屏拉伸的特性下手即可。
+            </p>
+        </div>
+    </main>
+    <footer id="navigation-bar" class="content center">我是导航栏</footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* https://stackoverflow.com/questions/211383/what-methods-of-clearfix-can-i-use */
+.clearfix::after {
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    font-size: 0;
+    content: "";
+    zoom: 1; /* ie 6/7 */
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全屏布局（Flex 方案）</title>
+    <meta
+            name="viewport"
+            content="width=device-width,height=device-height, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0; /* 去除默认的 margin */
+        }
+
+        #root-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+
+            .content {
+                color: white;
+            }
+
+            .center {
+                text-align: center;
+                line-height: 50px;
+            }
+        }
+
+        #title-bar {
+            height: 50px;
+            background-color: #f66;
+        }
+
+        #navigation-bar {
+            height: 50px;
+            background-color: #66f;
+        }
+
+        #main-container {
+            flex: 1;
+            background-color: #3c9;
+            /*
+            若 `<main>` 需表现为可滚动状态，千万不要给 main 直接声明 `overflow:auto` 让
+            容器自适应滚动，这样做有可能因为其他格式化上下文的影响而导致自适应滚动失效或产生其他
+            未知效果（比如设置 `overflow:auto` 会让 `display:flex` 失效）。解决方案是在
+            `<main>` 中插入一个 `<div>` 并为给这个 `<div>` 设置 `overflow:auto`。
+            */
+            overflow: hidden;
+        }
+
+        /* main-container 的内容区域 */
+        #main-content {
+            overflow: auto;
+            height: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="root-container">
+    <header id="title-bar" class="content center">我是头部</header>
+    <main id="main-container">
+        <div id="main-content" class="content">
+            <p>
+                经典的全屏布局由顶部、底部和主体三部分组成，其特性为三部分左右满屏拉伸、顶部底部高度固定和主体高度自适应。
+                该布局很常见，也是很多 Web 应用主体的主流布局。通常使用 `header`、`footer` 和 `main` 三个标签语义
+                化排版，`main` 内还可加入 `aside` 侧栏或其他语义化标签。
+            </p>
+            <p>
+                这里使用的是 flex 方案。
+            </p>
+        </div>
+    </main>
+    <footer id="navigation-bar" class="content center">我是导航栏</footer>
+</div>
+</body>
+</html>
