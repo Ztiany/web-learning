@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绝对定位 + 平移距实现居中布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        /* 先在父元素上设置相对定位 */
+        body {
+            position: relative
+        }
+
+        .center {
+            /* 绝对定位 */
+            position: absolute;
+            /* 上方和左方为50% */
+            top: 50%;
+            left: 50%;
+
+            /* 不用给宽高，但是可以给个内边距防止内容与盒子过于贴合 */
+            padding: 10px;
+
+            /* 这个50%是相对于自身宽高而言的 */
+            transform: translate(-50%, -50%);
+
+            /* 白色背景 */
+            background: white;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="center">
+
+    <div class="container">
+        <p class="title">
+            绝对定位 + 平移距实现居中布局（非固定宽高）
+        </p>
+        <div class="description">
+            <strong>
+                居中布局通常分为两种，一种是固定宽高，另一种是非固定宽高。固定宽高很好理解，非固定宽高通常都是靠里面的内容来撑起盒子的高度，内容时多时少。
+            </strong>
+        </div>
+        <ol class="content">
+            <li>margin 的百分比是相对于父元素的宽；</li>
+            <li>translate 函数的百分比是相对于自身；</li>
+            <li>不仅适用于未知宽高，也同样适用于固定宽高的居中布局。</li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>

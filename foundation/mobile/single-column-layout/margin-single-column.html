@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>外边距实现单列布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        .center {
+            /* 给个宽高方便查看 */
+            width: 90%;
+            height: 100%;
+            /* 外边距上下为0、左右为自动 */
+            margin: 0 auto;
+            /* 白色背景 */
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+<div class="center">
+
+    <div class="container">
+        <p class="title">
+            外边距实现单列布局
+        </p>
+        <div class="description">
+            单列布局是目前运用最为广泛的布局之一，因其结构清晰、一目了然、无论屏幕大小都能获得较为一致的效果等优点深受大家喜爱。
+        </div>
+        <ol class="content">
+
+        </ol>
+        <div class="description">
+
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

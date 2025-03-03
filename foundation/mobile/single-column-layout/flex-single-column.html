@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性布局实现单列布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        /* 找到单列盒子的直接父元素 */
+        body {
+            /* 令其变成弹性布局 */
+            display: flex;
+            /* 水平方向居中 */
+            justify-content: center;
+        }
+
+        .center {
+            /*
+            flex-basis 属性指定了在分配空间之前，弹性项目的基础尺寸。简单来说，它决定了弹性项目在主轴（通常是水平方向）上的初始大小。
+
+            如何工作：
+                在计算弹性容器中各个项目的大小时，flex-basis 将被用作项目的基础尺寸。
+                如果未设置 flex-basis，则会默认使用 content 的自然尺寸（即内容的实际大小）。
+
+            与 box-sizing 的关系：box-sizing 属性控制元素的宽度和高度的计算方式。
+                如果 box-sizing 设置为 border-box，那么 flex-basis 将包括内边距和边框的大小。
+                反之，如果设置为 content-box，则 flex-basis 只考虑内容区域的大小。
+
+            这里相当于 flex 版的 width: 90%
+            */
+            flex-basis: 90%;
+            /* 白色背景 */
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+<div class="center">
+
+    <div class="container">
+        <p class="title">
+            弹性布局实现单列布局
+        </p>
+        <div class="description">
+            弹性布局已经成为移动端最流行的布局方式之一了，这里以弹性布局的方式实现单列布局。
+        </div>
+        <ol class="content">
+            <li>父元素设置 display: flex；</li>
+            <li>水平方向属性为 justify-content；</li>
+            <li>垂直方向属性为 align-items；</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+
+</html>

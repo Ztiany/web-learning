@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绝对定位 + 平移实现单列布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        /*
+        只要涉及到绝对定位，就一定要记得在祖先元素上设置相对定位或其他定位。
+        不然的话可能不会按照你想要的方式去执行
+        */
+        body {
+            position: relative
+        }
+
+        .center {
+            /* 绝对定位 */
+            position: absolute;
+            /* 左方为 50% */
+            left: 50%;
+            /* 给个宽高方便查看 */
+            width: 90%;
+            height: 100%;
+            /* 这个 50% 是相对于自身宽高而言的 */
+            transform: translate(-50%);
+            /* 白色背景 */
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+<div class="center">
+
+    <div class="container">
+        <p class="title">
+            绝对定位 + 平移实现单列布局
+        </p>
+        <div class="description">
+            平移是 CSS3 的属性，它可以按照自身尺寸的百分比来进行平移。
+            语法是：transform: translate(xx%);
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

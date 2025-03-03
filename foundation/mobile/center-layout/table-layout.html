@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格布局实现居中布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        body {
+            /* 令body全屏显示 */
+            width: 100vw;
+            height: 100vh;
+            /* 显示为表格的格子 */
+            display: table-cell;
+            /* 水平居中 */
+            text-align: center;
+            /* 垂直居中 */
+            vertical-align: middle;
+            /* 灰色背景 */
+            background: gray;
+        }
+
+        .center {
+            /* 显示为行内块元素，让宽度由内容撑开，而不是全屏 */
+            display: inline-block;
+            /* 不用给宽高，但是可以给个内边距防止内容与盒子过于贴合 */
+            padding: 10px;
+            /* 白色背景 */
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+<div class="center">
+
+    <div class="container">
+        <p class="title">
+            表格布局实现居中布局
+        </p>
+        <div class="description">
+            其实 CSS 布局流行起来之前一直使用的是表格布局。在居中布局这种场景下，表格布局也很适用。
+            此布局的关键点在于：
+        </div>
+        <ol class="content">
+            <li>父元素上 3 个样式设置：display: table-cell; text-align: center; vertical-align: center;；</li>
+            <li>子元素上设置 display: inline-block;。</li>
+        </ol>
+        <div class="description">
+            display: table-cell; 会使元素表现得像表格的单元格，而 text-align: center; 和 vertical-align: center; 会使元素水平和垂直居中。
+            display: inline-block; 会使元素表现得像行内块元素，可以让元素水平排列。
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绝对定位 + 负边距实现居中布局（固定宽高）</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        /* 先在父元素上设置相对定位 */
+        body {
+            position: relative
+        }
+
+        .center {
+            /* 绝对定位 */
+            position: absolute;
+            /* 上方和左方为50% */
+            top: 50%;
+            left: 50%;
+
+            /* 给定宽高 */
+            width: 600px;
+            height: 200px;
+            /* 上外边距为负的给定高度的一半 */
+            margin-top: -100px;
+            /* 左外边距为负的给定宽度的一半 */
+            margin-left: -300px;
+
+            /* 白色背景 */
+            background: white;
+        }
+
+        #content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="center">
+
+    <div class="container">
+        <p class="title">
+            绝对定位 + 负边距实现居中布局（固定宽高）
+        <div class="description">
+            居中布局通常分为两种，一种是固定宽高，另一种是非固定宽高。固定宽高很好理解，非固定宽高通常都是靠里面的内容来撑起盒子的高度，内容时多时少。
+        </div>
+        <ol class="content">
+            <li>top: 50%; 和 left: 50%; 会让盒子的左上角定位到中央位置；</li>
+            <li>所以给上外边距和左外边距一个负值将盒子拉到中央位置；</li>
+            <li>margin 的百分比并不是相对于自身，而是相对于父元素的宽度，所以这里不能写成 -50%；</li>
+            <li>此种实现方式兼容性也同样十分良好。</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

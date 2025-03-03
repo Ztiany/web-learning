@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网格布局实现居中布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        /* 中央盒子的直接父元素 */
+        body {
+            /* 令其变成网格布局 */
+            display: grid;
+            /* 令子元素居中 */
+            place-items: center;
+        }
+
+        .center {
+            /* 不用给宽高，但是可以给个内边距防止内容与盒子过于贴合 */
+            padding: 10px;
+            /* 白色背景 */
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+<div class="center">
+
+    <div class="container">
+        <p class="title">
+            网格布局实现居中布局
+        </p>
+        <div class="description">
+            网格布局是一种二维布局系统，可以用来布局行和列。它的语法比较复杂，但是功能强大，可以实现很多复杂的布局。
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

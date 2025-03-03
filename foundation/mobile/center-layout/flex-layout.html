@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性布局实现居中布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        /* 中央盒子的直接父元素 */
+        body {
+            /* 令其变成弹性布局 */
+            display: flex;
+        }
+
+        .center {
+            /* 自动外边距 */
+            margin: auto;
+            /* 白色背景 */
+            background: white;
+            /* 不用给宽高，但是可以给个内边距防止内容与盒子过于贴合 */
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="center">
+
+    <div class="container">
+        <p class="title">
+            弹性布局实现居中布局
+        </p>
+        <div class="description">
+            弹性布局已经成为移动端最流行的布局方式之一，要点：
+        </div>
+        <ol class="content">
+            <li>父元素设置 display: flex;</li>
+            <li>子元素设置 margin: auto;</li>
+        </ol>
+        <div class="description">
+            在 flex 布局中，margin: auto; 会将子元素推到父元素的中央。
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

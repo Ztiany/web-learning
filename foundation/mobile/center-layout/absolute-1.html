@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绝对定位实现居中布局（固定宽高）</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 清除默认样式 */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 令 html 和 body 全屏显示, 并有一个灰色背景 */
+        html, body {
+            height: 100%;
+            background: gray;
+        }
+
+        /* 先在父元素上设置相对定位 */
+        body {
+            position: relative
+        }
+
+        .center {
+            /* 绝对定位 */
+            position: absolute;
+            /* 上下左右全部为0 */
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            /* 给定宽高 */
+            width: 70%;
+            height: 25%;
+            /* 令外边距自动填充 */
+            margin: auto;
+            /* 白色背景 */
+            background: white;
+        }
+
+        #content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="center">
+
+    <div class="container">
+        <p class="title">绝对定位实现居中布局（固定宽高）</p>
+        <div class="description">
+            居中布局通常分为两种，一种是固定宽高，另一种是非固定宽高。固定宽高很好理解，非固定宽高通常都是靠里面的内容来撑起盒子的高度，内容时多时少。
+        </div>
+        <ol class="content">
+            <li>如果不给定宽高，盒子将会和父元素一样大，因为绝对定位上下左右都是 0，意为紧贴着父元素的边。</li>
+            <li>给了固定宽高，但没写 margin 的话盒子会固定在左上角，因为 top 和 left 的优先级更高。</li>
+            <li>给了 margin: auto; 的话，浏览器会自动填充边距，令其居中。</li>
+            <li>此种实现方式优点是兼容性很好，几乎没用到任何 CSS 的新特性，全部都是经典属性。</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>
