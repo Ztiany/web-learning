@@ -28,7 +28,7 @@
             }
 
             oBox.ondragover = function (e) {
-                //调用 event.preventDefault() 方法来屏蔽元素的默认行为。如果没有屏蔽掉，则 drop 事件不会被触发。
+                // 调用 event.preventDefault() 方法来屏蔽元素的默认行为。如果没有屏蔽掉，则 drop 事件不会被触发。
                 e.preventDefault();
             };
 
@@ -46,8 +46,9 @@
 
 </head>
 
-
 <body>
+
+<div class="desc">尝试将 list item 从上面的框拖动到下面的框中。</div>
 
 <ul id="list">
     <li id="list1" draggable="true">list1</li>

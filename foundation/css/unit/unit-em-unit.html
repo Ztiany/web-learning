@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unit-EM-UNITE</title>
+    <style>
+        /*
+        对于一个页面的字体大小，使用 px 作为单位时可扩展性不好，使用百分比作为单位时也不
+        符合习惯，最佳选择是使用 em 作为单位来定义字体大小。
+
+        使用 em 作为单位，当需要改变页面整体的文字大小时，我们只需要改变根元素字体大小即
+        可，工作量变得非常少。em 这个特点在跨平台网站开发中有着明显的优势。
+
+        所有浏览器默认字体大小都是 16px。如果在一个页面中，我们想要统一使用 em 作为单位，
+        此时可以拿默认字体大小开刀。也就是说，对于任何元素我们都不需要设置 font-size 为多
+        少 px，而是继承根元素的 font-size 值（即 16px），然后再使用 em 换算即可。
+
+        为了简化 font-size 的计算，我们在 CSS 中提前声明 “body{font-size:62.5%; }”。通过这个
+        声明，我们可以使得默认字体大小变为 16px×62.5%=10px，此时 em 与 px 对应关系如下。
+
+                        1em = 10px
+                        0.75em = 7.5px
+        */
+        body {
+            font-size: 62.5%;
+        }
+
+        #p1 {
+            font-size: 1em;
+        }
+
+        #p2 {
+            font-size: 1.5em;
+        }
+
+        #p3 {
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+
+<body>
+<div id="demo1">
+    <p id="p1">当前字体大小为 1em，也就是 10px</p>
+    <p id="p2">当前字体大小为 1.5em，也就是 15px</p>
+    <p id="p3">当前字体大小为 2em，也就是 20px</p>
+</div>
+</body>
+
+</html>
