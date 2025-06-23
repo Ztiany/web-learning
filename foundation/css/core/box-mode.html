@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Box-Mode</title>
     <style>
-        div {
+        .inline-box {
             display: inline-block; /*将块元素转换为 inline-block 元素*/
             padding: 20px;
             margin: 20px 40px 60px 80px;
@@ -16,6 +16,16 @@
 
 
 <body>
-<div></div>
+<div>
+    <h1>CSS 盒模型的注意点</h1>
+</div>
+<div class="inline-box">
+    <ol>
+        <li>Padding 不能为负值，而 Margin 可以为负值</li>
+        <li>背景色会平铺到非 Margin 的区域</li>
+        <li>Margin-top 传递的现象</li>
+        <li>Margin 上下叠加的现象</li>
+    </ol>
+</div>
 </body>
 </html>
