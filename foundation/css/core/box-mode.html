@@ -7,9 +7,41 @@
         .inline-box {
             display: inline-block; /*将块元素转换为 inline-block 元素*/
             padding: 20px;
-            margin: 20px 40px 60px 80px;
+            width: 50%;
             border: 1px solid red;
             background-color: #FFDEAD;
+        }
+
+        section {
+            width: 100%;
+            margin: 20px
+        }
+
+        .box_21_A {
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+
+        .box_21_B {
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+            margin-top: 30px;
+        }
+
+        .box_22_A {
+            width: 200px;
+            height: 200px;
+            background: pink;
+            margin-bottom: 40px;
+        }
+
+        .box_22_B {
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -17,15 +49,88 @@
 
 <body>
 <div>
-    <h1>CSS 盒模型的注意点</h1>
+    <h1>CSS 盒模型</h1>
 </div>
-<div class="inline-box">
-    <ol>
-        <li>Padding 不能为负值，而 Margin 可以为负值</li>
-        <li>背景色会平铺到非 Margin 的区域</li>
-        <li>Margin-top 传递的现象</li>
-        <li>Margin 上下叠加的现象</li>
-    </ol>
-</div>
+
+<section>
+    <div>
+        <h2>1：CSS 盒模型的概念</h2>
+        <div class="inline-box">
+            <p>
+                CSS 盒模型是指浏览器将每个 HTML 元素都看作一个矩形盒子，并且这个盒子由四个部分组成：内容区（Content）、内边距（Padding）、边框（Border）和外边距（Margin）。这些部分共同决定了元素在页面上的布局和显示方式。
+            </p>
+            <p>有两种盒子模型</p>
+            <ul>
+                <li>
+                    <strong>标准盒模型（W3C 盒模型）</strong>：
+                    <p>在标准盒模型中，元素的宽度和高度只包括内容区的尺寸，不包括内边距、边框和外边距。</p>
+                </li>
+                <li>
+                    <strong>
+                        IE 盒模型（IE Box Model）：
+                    </strong>
+                    <p>在 IE 盒模型中，元素的宽度和高度包括内容区、内边距和边框，但不包括外边距。</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h2>2：CSS 盒模型的注意点</h2>
+    </div>
+    <div class="inline-box">
+        <ol>
+            <li>Padding 不能为负值，而 Margin 可以为负值</li>
+            <li>背景色会平铺到非 Margin 的区域</li>
+            <li>Margin-top 传递的现象</li>
+            <li>Margin 上下叠加的现象</li>
+        </ol>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h3>2.1：Margin-top 传递的现象</h3>
+    </div>
+    <div class="inline-box">
+        <div class="box_21_A">
+            <div class="box_21_B"></div>
+        </div>
+        <p>
+            在上面的例子中，<code>boxB</code> 的 <code>margin-top</code> 传递给了 <code>boxA</code>，导致 <code>boxA</code> 的高度增加了 30px。
+            这是因为 <code>boxB</code> 的 <code>margin-top</code> 传递给了其父元素 <code>boxA</code>，使得 <code>boxA</code> 的高度增加了 30px。
+        </p>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h3>2.2：Margin 上下叠加的现象</h3>
+    </div>
+    <div class="inline-box">
+        <div class="box_22_A">A</div>
+        <div class="box_22_B">B</div>
+        <p>
+            在上面的例子中，<code>boxA</code> 的 <code>margin-bottom</code> 和 <code>boxB</code> 的 <code>margin-top</code> 发生了叠加，
+            我们预计两个盒子相距 70px，但实际上它们之间的距离只有 40px。这是因为 <code>boxA</code> 的 <code>margin-bottom</code> 和 <code>boxB</code> 的
+            <code>margin-top</code> 发生了叠加，我们可以通过只在 <code>boxB</code> 上设置 <code>margin-top</code> 来避免这种情况。或者使用
+            BFC（块级格式化上下文）来隔离这两个盒子。
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>3：IE 盒模型的使用场景</h2>
+    <div class="inline-box">
+        <p>
+            IE 盒模型在早期的浏览器中被广泛使用，但现代浏览器都遵循标准盒模型。一般，为了兼容性，建议使用标准盒模型。
+            如果需要使用 IE 盒模型，可以通过设置 <code>box-sizing: border-box;</code> 来实现。但是有些情况下使用 IE
+            盒模型可能会更方便，例如在处理一些复杂的布局时，可以更容易地控制元素的尺寸和间距。类比 Android 中的 View，它的盒子模型与 IE 盒模型是一致的。
+        </p>
+    </div>
+</section>
+
 </body>
 </html>

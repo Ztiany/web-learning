@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>element-classify</title>
     <style>
-        .demo {
+        header {
             margin-top: 40px;
             width: 400px;
         }
@@ -13,62 +13,83 @@
             width: 400px;
         }
 
+        .content {
+            display: inline-block; /*将块元素转换为 inline-block 元素*/
+            padding: 20px;
+            width: 50%;
+            border: 1px solid red;
+            margin: 20px;
+            background-color: #FFDEAD;
+        }
+
     </style>
 </head>
 
 <body>
 
-<div id="header" class="demo">
+<div id="header">
     <h1>元素类型</h1>
 </div>
 
-<div id="demo-1" class="demo">
+<div id="demo-1" class="content">
     <h2>块元素</h2>
-    <img src="../../resource/img/block-element.jfif">
+    <div>
+        块元素是 HTML 中最常用的元素类型。块元素通常用于创建页面的结构和布局。它们在页面中占据一整行，并且可以包含其他块元素或行内元素。
+        常见的块元素包括：<code>div</code>、 <code>p</code>、<code>h1</code>-<code>h6</code>、<code>ul</code>、<code>ol</code>、<code>li</code>、<code>section</code>、<code>article</code>
+        等。
+    </div>
     <blockquote>
+        <strong>块元素的特点：</strong>
         <ol>
             <li>独占一行，排斥其他元素跟其位于同一行，包括块元素和行内元素。</li>
             <li>块元素内部可以容纳其他块元素或行元素。</li>
-            <li>可以定义宽度（width），也可以定义高度（height）。</li>
-            <li>可以定义四个方向的margin。</li>
+            <li>可以定义宽度（width），也可以定义高度（height），不写宽度的时候，默认宽度为父元素的宽度。
+            <li>支持所有的 CSS 属性，包括 margin、padding、border、width、height 等。</li>
         </ol>
     </blockquote>
 </div>
 
-<div id="demo-2" class="demo">
+<div id="demo-2" class="content">
     <h2>行内元素</h2>
-    <img src="../../resource/img/inline-element.jfif">
+    <div>
+        行内元素是 HTML 中的另一种常用元素类型。行内元素通常用于文本内容的格式化和样式应用。它们不会独占一行，而是与其他行内元素或文本内容在同一行显示。
+        常见的行内元素包括：<code>strong</code>、 <code>span</code>、<code>s</code>、<code>a</code>、<code>em</code>、<code>u</code>、<code>img</code> 等。
+    </div>
     <blockquote>
+        <strong>行内元素的特点：</strong>
         <ol>
-            <li>可以与其他行内元素位于同一行。</li>
+            <li>不产生换行，即可以与其他行内元素位于同一行。</li>
             <li>行内内部可以容纳其他行内元素，但不可以容纳块元素，不然会出现无法预知的效果。</li>
-            <li>无法定义高度（height），也无法定义宽度（width）。</li>
+            <li>无法定义高度（height），也无法定义宽度（width），宽度是由内容决定的。</li>
             <li>可以定义 margin-left 和 margin-right，无法定义 margin-top 和 margin-bottom。</li>
+            <li>内联元素之间会有空白间隙，这个间隙是由浏览器默认的字体大小决定的。</li>
+            <li>所占据的区域不一定是矩形，比如换行的一段文字。</li>
         </ol>
     </blockquote>
 </div>
 
-<div id="demo-3" class="demo">
+<div id="demo-3" class="content">
     <h2>行内块元素</h2>
     <p>
         常见的 inline-block 元素有两个：img 元素和 input 元素。对于这两个 inline-block 元素，我们一定要记住。
     </p>
-    <blockquote>
+    <div>
         <ol>
             <li>可以定义 width 和 height。</li>
             <li>可以与其他行内元素位于同一行。</li>
         </ol>
-    </blockquote>
+    </div>
 </div>
 
-<div class="demo">
+<div class="content">
     <h2>补充说明</h2>
     <p>
-        此外对于块元素，IE6 和 IE7 不能识别 “display:inline-block”，加不加 “display:inline-block” 对它们完全没有任何影响。解决方法是：在
+        此外对于块元素，IE6 和 IE7 不能识别 <code>display:inline-block</code>，加不加 <code>display:inline-block</code> 对它们完全没有任何影响。解决方法是：在
         IE6 和 IE7
-        中用 “*display:inline;*zoom:1;” 来代替 “display:inline-block;”。对于行内元素，比如 a、span 等，display:inline-block
-        不存在兼容问题，所有浏览器都
-        可以识别，可以正常使用。当然 IE6 和 IE7 也逐渐淡出历史舞台了，这些了解一下即可。
+        中用 <code>*display:inline;*zoom:1;</code> 来代替 <code>display:inline-block;</code>。（注意前面的 <code>*</code> 号，这是 IE6/7 特有的写法，其他浏览器会忽略。<code>display:
+        inline</code> 让元素变成行内元素，<code>zoom: 1</code> 用于触发 IE 的 hasLayout 属性，让其可以正确设置宽高。）对于行内元素，比如 a、span
+        等，<code>display:inline-block</code>
+        不存在兼容问题，所有浏览器都可以识别，可以正常使用。当然 IE6 和 IE7 也逐渐淡出历史舞台了，这些了解一下即可。
     </p>
 </div>
 

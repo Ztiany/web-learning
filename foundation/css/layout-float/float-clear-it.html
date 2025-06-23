@@ -17,22 +17,25 @@
         }
 
         .father div {
-            padding: 10px;
+            padding: 15px;
             margin: 15px;
         }
 
         .son1 {
             background-color: hotpink;
             float: left;
+            border: 1px solid black;
         }
 
         .son2 {
             background-color: darkblue;
             float: left;
+            border: 1px solid red;
         }
 
         .son3 {
             background-color: red;
+            border: 1px solid black;
         }
 
         /*
@@ -40,6 +43,11 @@
          */
         .clear-both {
             clear: both;
+            /*
+            加上 display: block 是为了更好的兼容性，这样这个 clear-both 就可以应用于任意元素，
+            而不仅限于块级元素。因为只有块级元素才能清除浮动。
+            */
+            display: block;
         }
 
         #demo2-father {
@@ -62,10 +70,19 @@
             margin: 0 0 10px 10px;
         }
 
+        /*
+              使用 *zoom:1; 来清除 IE6、IE7 的浮动问题。
+              这个属性是一个 hack，主要是为了让 IE6、IE7 识别伪元素。
+              在现代浏览器中，这个属性并不需要，但为了兼容性，仍然可以使用。
+         */
         .clearfix {
             *zoom: 1;
         }
 
+        /*
+           使用伪元素清除浮动，其中 display: block; 是为了让伪元素生成一个块级元素，
+           因为只有块级元素才能清除浮动。
+         */
         .clearfix::after {
             clear: both;
             content: "";
@@ -156,7 +173,7 @@
     <div class="father">
         <div class="son1"></div>
         <div class="son2"></div>
-        <div class="clear-both"></div>
+        <span class="clear-both"></span>
         <div class="son3"></div>
     </div>
 </div>
