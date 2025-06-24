@@ -15,8 +15,7 @@
         }
 
         li {
-            padding-left: 5px;
-            margin-left: 5px;
+            margin-left: 20px;
         }
 
         .content {
@@ -109,6 +108,7 @@
 
         #demo-7 ul {
             list-style-type: none;
+            display: block;
             font-size: 0;
         }
 
@@ -118,12 +118,27 @@
             height: 60px;
             line-height: 60px;
             font-size: 30px;
-            border: 1px dashed black;
+            border: 3px dashed red;
             text-align: center;
             color: White;
             background-color: Purple;
+            padding: 0;
+            margin: 0;
         }
 
+        #demo-8 .list-item {
+            display: list-item;
+            list-style-type: square;
+            margin-left: 20px; /* 为标记留出空间 */
+            list-style-position: outside; /* 标记在外部 */
+
+            /* 高级标记样式：::marker 伪元素：单独设置标记样式（CSS3） */
+
+            &::marker {
+                color: #e74c3c;
+                font-weight: bold;
+            }
+        }
     </style>
 </head>
 
@@ -152,6 +167,27 @@
             <li><code>table</code>：元素会被呈现为表格布局，类似于 HTML 中的 table 元素。</li>
             <li><code>flex</code>：元素会被呈现为弹性盒子布局，子元素成为弹性项目，可以灵活地调整子元素的大小和位置。</li>
             <li><code>grid</code>：元素会被呈现为网格布局，可以创建复杂的二维布局，子元素放置于网格单元格。</li>
+            <li>
+                <code>
+                    inline-flex / inline-grid
+                </code>
+                ：元素会被呈现为行内弹性盒子布局或行内网格布局，类似于 flex 和 grid，但不会占据一整行。
+            </li>
+            <li>
+                <code>
+                    list-item
+                </code>
+                ：元素会被呈现为列表项，通常用于无序列表（ul）或有序列表（ol），会在前面添加项目符号或数字。
+            </li>
+            <li>
+                <code>
+                    flow-root
+                </code>
+                ：元素会被呈现为一个块级格式化上下文（BFC），可以清除内部浮动，防止外部元素影响其布局。
+            </li>
+            <li>
+                同时，CSS3 还支持多种新的 display 值，语法为：<code>display: 外部显示类型 内部显示类型</code>。
+            </li>
         </ul>
     </div>
     <p>
@@ -225,6 +261,11 @@
             </li>
         </ol>
     </div>
+    <p>
+        还有一个需要注意的地方，在使用 display: table-* 系列属性时，是否需要严格遵循层级结构？
+        在使用 display: table、table-row 和 table-cell 时，虽然它们模拟了表格的行为，但并不要求严格遵循 HTML 表格的层级结构。
+        浏览器会自动创建匿名表格元素来补全缺失的结构。
+    </p>
 </div>
 
 <div class="demo" id="demo-4">
@@ -298,5 +339,28 @@
         <li>3</li>
     </ul>
 </div>
+
+
+<div class="demo" id="demo-8">
+    <h2>display: list-item 实际应用</h2>
+    <div class="content">
+        <p>
+            display: list-item 主要用于将元素呈现为列表项，通常用于无序列表（ul）或有序列表（ol）。
+            它会在元素前添加项目符号或数字，并且可以通过 CSS 控制项目符号的样式。在实际应用中，display: list-item
+            可以用于创建自定义列表样式，或者在需要时将非列表元素转换为列表项。list-item 元素生成三个独立盒子：
+        </p>
+        <ul>
+            <li>主块级盒子：包含元素内容</li>
+            <li>标记盒子 (marker box)：显示项目符号/数字</li>
+            <li>匿名内容盒子：包裹前两个盒子</li>
+        </ul>
+    </div>
+    <div>
+        <div class="list-item">1</div>
+        <div class="list-item">2</div>
+        <div class="list-item">3</div>
+    </div>
+</div>
+
 </body>
 </html>
