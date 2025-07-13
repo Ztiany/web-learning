@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Swiper</title>
+    <link rel="stylesheet" href="iconfont.css"/>
+    <link rel="stylesheet" href="reset.css"/>
+
+    <style>
+        .swiper-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            /* 下面两个属性用于配合 JS 实现拖动效果，即不断改变 left 的值。*/
+            position: relative;
+            left: 0;
+        }
+
+        .swiper-slide {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+        }
+
+        .swiper-pagination {
+            position: absolute;
+            height: 28px;
+            width: 100%;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #c6bcaf;
+            margin: 0 4px;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: white;
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .swiper-button-prev {
+            left: 0;
+        }
+
+        .swiper-button-next {
+            right: 0;
+        }
+
+        .swiper-button-prev i,
+        .swiper-button-next i {
+            font-size: 44px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<div class="swiper-container">
+
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="../../resource/img/爱上特种兵.webp" alt="爱上特种兵"/>
+        </div>
+        <div class="swiper-slide">
+            <img src="../../resource/img/叛逆者.webp" alt="叛逆者"/>
+        </div>
+        <div class="swiper-slide">
+            <img src="../../resource/img/百炼成钢.webp" alt="百炼成钢"/>
+        </div>
+    </div>
+
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination">
+        <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+        <span class="swiper-pagination-bullet"></span>
+        <span class="swiper-pagination-bullet"></span>
+    </div>
+
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev">
+        <i class="iconfont icon-swiperhoutui"></i>
+    </div>
+    <div class="swiper-button-next">
+        <i class="iconfont icon-swiperqianjin"></i>
+    </div>
+</div>
+
+<script>
+    let swiperWrapper = document.querySelector(".swiper-wrapper")
+    let swiperSlides = swiperWrapper.querySelectorAll(".swiper-slide")
+    let swiperPagination = document.querySelector(".swiper-pagination")
+    let swiperPaginationBullets = swiperPagination.querySelectorAll(
+        ".swiper-pagination-bullet"
+    )
+    let swiperButtonPrev = document.querySelector(".swiper-button-prev")
+    let swiperButtonNext = document.querySelector(".swiper-button-next")
+
+    let disX
+    let downX
+    let now = 0
+    let width = swiperWrapper.offsetWidth
+    swiperWrapper.addEventListener("touchstart", function (ev) {
+        disX = ev.changedTouches[0].pageX - swiperWrapper.offsetLeft
+        downX = ev.changedTouches[0].pageX
+        document.addEventListener("touchmove", move)
+        document.addEventListener("touchend", up)
+    })
+
+    function move(ev) {
+        swiperWrapper.style.left = ev.changedTouches[0].pageX - disX + "px"
+    }
+
+    function up(ev) {
+        if (ev.changedTouches[0].pageX < downX) {
+            now !== swiperSlides.length - 1 && now++
+        } else {
+            now !== 0 && now--
+        }
+        changed(now)
+    }
+
+    swiperWrapper.addEventListener("transitionend", function () {
+        swiperWrapper.style.transition = ""
+    })
+
+    swiperButtonNext.addEventListener("touchstart", function () {
+        now !== swiperSlides.length - 1 && now++
+        changed(now)
+    })
+
+    swiperButtonPrev.addEventListener("touchstart", function () {
+        now !== 0 && now--
+        changed(now)
+    })
+
+    function changed() {
+        swiperWrapper.style.transition = ".5s"
+        swiperWrapper.style.left = -now * width + "px"
+        for (let i = 0; i < swiperPaginationBullets.length; i++) {
+            swiperPaginationBullets[i].classList.remove(
+                "swiper-pagination-bullet-active"
+            )
+        }
+        swiperPaginationBullets[now].classList.add(
+            "swiper-pagination-bullet-active"
+        )
+        document.removeEventListener("touchmove", move)
+        document.removeEventListener("touchend", up)
+    }
+</script>
+
+</body>
+
+</html>

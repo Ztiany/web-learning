@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>布局：等高布局（float）</title>
+    <style>
+        .main {
+            width: 500px;
+            background: skyblue;
+            overflow: hidden;
+        }
+
+        .main div {
+            width: 100px;
+            background: pink;
+            float: left;
+            /*
+            实现等高布局的关键就是这两个属性。
+            */
+            margin-bottom: -2000px;
+            padding-bottom: 2000px;
+        }
+
+        .main div:nth-of-type(2) {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+<div class="main">
+    <div>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+    </div>
+    <div>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+        <p>测试内容</p>
+    </div>
+</div>
+</body>
+
+</html>
