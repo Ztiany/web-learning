@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>屏幕适配：vw</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            /* font-size: 100vw; */ /* 在 iPhone6 中，1rem -> 375px */
+            font-size: 26.666667vw; /* 在 iPhone6 中，1rem -> 100px */
+        }
+
+        body {
+            font-size: 0.16rem; /* rem 布局一定要在 body 重置 font-size 大小 */
+        }
+
+        .box {
+            width: 1rem; /* 页面可视区分成了 100vw和 100vh */
+            height: 1rem;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box">哈哈</div>
+</body>
+
+</html>
