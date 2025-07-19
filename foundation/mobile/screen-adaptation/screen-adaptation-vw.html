@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>屏幕适配：vw</title>
+    <style>
+        .box {
+            /*
+            vw 单位：视口宽度的百分之一。视窗宽度被定义为 100vw。即 1vw = 1% 的视口宽度。
+            在移动端，vw 单位可以用来设置元素的宽度和高度，使其相对于视口的宽度进行适配。
+            例如：如果视口宽度为 375px，则 1vw = 3.75px。
+
+            使用 vw 单位可以很好地适配不同屏幕尺寸的设备，避免了使用固定像素值导致的布局问题。
+            这样在不同设备上都能保持相对一致的宽度。
+            */
+            width: 50vw; /* 视口宽度的 50% */
+            height: 50vw;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box">哈哈</div>
+</body>
+
+</html>
