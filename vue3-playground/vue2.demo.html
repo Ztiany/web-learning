@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Vue2: Demo</title>
     <style>
         [v-cloak] {
             display: none;
@@ -12,13 +12,11 @@
     </style>
 </head>
 
-
 <body>
 <div id='app' v-cloak>
     <p v-text="text"></p>
     <p v-pre>{{text}}</p>
 </div>
-
 
 <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
 <script>
@@ -26,10 +24,11 @@
         new Vue({
             el: '#app',
             data: {
-                text: '大家好，我是 Alien'
+                text: '大家好，我是 Alien！'
             },
         })
     }
 </script>
 </body>
+
 </html>
